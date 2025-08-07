@@ -9,7 +9,7 @@ require_once __DIR__ . '/functions.php';
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><?= SITE_NAME ?></title>
-  
+
   <link rel="icon" href="<?= BASE_URL ?>/assets/img/agora-logo.png" type="image/x-icon">
   <meta name="description"
     content="Agora Social Feed est une plateforme tout-en-un de partage de fichiers privés ou publics, avec visualisation et export de données (CSV, JSON, Excel, PDF, PNG) et messagerie communautaire.">
@@ -39,11 +39,9 @@ require_once __DIR__ . '/functions.php';
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
-  <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>-->
+  <!-- CSS AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     // Fail-safe si jQuery ne charge pas

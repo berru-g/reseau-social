@@ -1,6 +1,6 @@
 -- Création de la base de données
-CREATE DATABASE IF NOT EXISTS messagerie_collegues;
-USE messagerie_collegues;
+CREATE DATABASE IF NOT EXISTS reseau_social;
+USE reseau_social;
 
 -- Table des utilisateurs
 CREATE TABLE users (
@@ -70,12 +70,6 @@ ADD FOREIGN KEY (parent_id) REFERENCES comments(id) ON DELETE CASCADE;
 ALTER TABLE users
 ADD COLUMN profile_picture VARCHAR(255) NULL,
 ADD COLUMN website_url VARCHAR(255) NULL;
-
--- afficher img profile du propriétaire ( pas encore push dans la bdd )
---SELECT f.*, u.id as owner_id, u.username, u.profile_picture, u.email
---FROM user_files f
---JOIN users u ON f.user_id = u.id
---WHERE f.id = ? -- bug pas l
 
 -- Ajout des format img à la gallery upload
 ALTER TABLE user_files MODIFY COLUMN file_type ENUM('csv','excel','json','image','googlesheet') NOT NULL;

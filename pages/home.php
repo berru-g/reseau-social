@@ -94,7 +94,7 @@ require_once '../includes/header.php';
 
         <?php foreach ($comments as $comment): ?>
 
-            <div class="comment">
+            <div class="comment" data-aos="fade-up" data-aos-delay="100">
 
                 <!--(int) pour éviter les injections SQL et htmlspecialchars pour protéger contre les XSS --Normalement -->
                 <a href="<?= BASE_URL ?>/pages/profile.php?user_id=<?= (int) $comment['user_id'] ?>"
@@ -120,14 +120,17 @@ require_once '../includes/header.php';
                 <?php if (!empty($comment['file_path'])): ?>
                     <!--ajouter lightbox comme pour search-->
                     <?php if ($comment['file_type'] === 'image'): ?>
-                        <img src="<?= htmlspecialchars($comment['file_path']) ?>" alt="image partagée"
-                            style="max-width:200px;"><!--style="max-width:200px;"-->
+                        <a href="<?= htmlspecialchars($comment['file_path']) ?>" data-lightbox="comment-gallery"
+                            data-title="Image partagée">
+                            <img src="<?= htmlspecialchars($comment['file_path']) ?>" alt="image partagée" style="max-width:200px;">
+                        </a>
                     <?php elseif ($comment['file_type'] === 'video'): ?>
-                        <video controls style="max-width:200px;"><!--style="max-width:200px;"-->
+                        <video controls style="max-width:200px;">
                             <source src="<?= htmlspecialchars($comment['file_path']) ?>" type="video/mp4">
                             Votre navigateur ne supporte pas la vidéo.
                         </video>
                     <?php endif; ?>
+
                 <?php endif; ?>
 
 
@@ -142,7 +145,7 @@ require_once '../includes/header.php';
             </div>
 
             <!-- Formulaire de réponse -->
-            <form method="POST" enctype="multipart/form-data" class="reply-form">
+            <form method="POST" enctype="multipart/form-data" class="reply-form" data-aos="fade-up" data-aos-delay="200">
                 <input type="hidden" name="parent_id" value="<?= $comment['id'] ?>">
                 <textarea name="content" placeholder="Répondre à ce post..."></textarea>
 
@@ -158,7 +161,8 @@ require_once '../includes/header.php';
 
             <!-- Affichage des réponses -->
             <?php foreach (getReplies($comment['id']) as $reply): ?>
-                <div class="reply" style="margin-left: 40px; border-left: 2px solid #ccc; padding-left: 10px;">
+                <div class="reply" style="margin-left: 40px; border-left: 2px solid #ccc; padding-left: 10px;"
+                    data-aos="fade-up" data-aos-delay="300">
                     <!--<?php if (!empty($reply['profile_picture'])): ?>
                         <img src="<?= htmlspecialchars($reply['profile_picture']) ?>?<?= time() ?>"
                             class="profile-picture-thumbnail">
@@ -275,7 +279,15 @@ require_once '../includes/header.php';
 </div>
 <script src="<?= BASE_URL ?>/assets/js/script.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+<!-- JS AOS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
 <script>
+    AOS.init({
+        duration: 800,        // Durée de l'animation en ms
+        easing: 'ease-out',   // Type d'effet
+        once: true,           // Ne joue l'animation qu'une fois
+    });
+
 
     // Configuration du lightbox pour la galerie
     lightbox.option({
