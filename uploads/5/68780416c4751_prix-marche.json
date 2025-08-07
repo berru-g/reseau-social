@@ -1,0 +1,100 @@
+{
+  "produits": [
+    {
+      "id": 1,
+      "nom": "Pomme Golden",
+      "categorie": "fruits",
+      "prix_kg": 2.99,
+      "unite": "kg",
+      "disponible": true,
+      "origine": "France"
+    },
+    {
+      "id": 2,
+      "nom": "Banane",
+      "categorie": "fruits",
+      "prix_kg": 1.89,
+      "unite": "kg",
+      "disponible": true,
+      "origine": "Côte d'Ivoire"
+    },
+    {
+      "id": 3,
+      "nom": "Laitue",
+      "categorie": "legumes",
+      "prix_unite": 0.99,
+      "unite": "pièce",
+      "poids_moyen_g": 300,
+      "disponible": true
+    },
+    {
+      "id": 4,
+      "nom": "Steak haché 5% MG",
+      "categorie": "viande",
+      "prix_kg": 12.50,
+      "unite": "kg",
+      "conditionnement": "sous vide",
+      "disponible": true
+    },
+    {
+      "id": 5,
+      "nom": "Oeufs bio (6)",
+      "categorie": "produits_laitiers",
+      "prix_unite": 3.20,
+      "unite": "boite",
+      "poids_moyen_g": 60,
+      "label": "AB"
+    },
+    {
+      "id": 6,
+      "nom": "Saumon fumé",
+      "categorie": "poisson",
+      "prix_kg": 35.00,
+      "unite": "kg",
+      "origine": "Norvège",
+      "conditionnement": "tranches"
+    },
+    {
+      "id": 7,
+      "nom": "Pain baguette",
+      "categorie": "boulangerie",
+      "prix_unite": 1.10,
+      "unite": "pièce",
+      "poids_moyen_g": 250,
+      "cuisson": "tradition"
+    },
+    {
+      "id": 8,
+      "nom": "Fromage Comté AOP",
+      "categorie": "fromage",
+      "prix_kg": 24.90,
+      "unite": "kg",
+      "affinage_mois": 12,
+      "label": "AOP"
+    },
+    {
+      "id": 9,
+      "nom": "Tomate ronde",
+      "categorie": "legumes",
+      "prix_kg": 3.49,
+      "unite": "kg",
+      "calibre": "80-100mm",
+      "origine": "Espagne"
+    },
+    {
+      "id": 10,
+      "nom": "Eau minérale (6x1.5L)",
+      "categorie": "boisson",
+      "prix_unite": 4.20,
+      "unite": "pack",
+      "volume_litre": 9,
+      "source": "Montagne"
+    }
+  ],
+  "meta": {
+    "date_maj": "2023-11-15",
+    "devise": "EUR",
+    "source": "Marché Rungis",
+    "notes": "Prix TTC moyens constatés"
+  }
+}

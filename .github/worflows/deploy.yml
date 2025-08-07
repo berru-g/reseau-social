@@ -1,0 +1,15 @@
+name: Deploy to Hostinger
+on: push
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: FTP Upload
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server: ftp.gael-berru.com
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./fileshare/          # Dossier LOCAL à pousser
+          server-dir: ./public_html/fileshare/  # Dossier CIBLE sur Hostinger

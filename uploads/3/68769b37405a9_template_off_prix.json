@@ -1,0 +1,27 @@
+{
+  "meta": {
+    "fournisseur": "Boucherie Dubois",
+    "date_maj": "2023-12-15",
+    "devise": "EUR"
+  },
+  "produits": [
+    {
+      "id_unique": "V001",
+      "nom": "Poulet fermier",
+      "categorie": "viandes",
+      "prix_ht": 8.50,
+      "unite": "kg",
+      "tva": 5.5,
+      "code_ean": "1234567890123"
+    },
+    {
+      "id_unique": "V002",
+      "nom": "Bœuf Charolais",
+      "categorie": "viandes",
+      "prix_ht": 12.80,
+      "unite": "kg",
+      "tva": 5.5,
+      "code_ean": "1234567890124"
+    }
+  ]
+}

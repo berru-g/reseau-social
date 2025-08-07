@@ -1,0 +1,53 @@
+{
+  "title": "Bienvenido a Agora Social Feed",
+  "cards": [
+    {
+      "icon": "user-secret",
+      "color": "purple",
+      "title": "Registro anónimo",
+      "text": "No se requiere correo electrónico verificado. Crea una cuenta en segundos, sin fricciones ni identidad forzada."
+    },
+    {
+      "icon": "clock",
+      "color": "blue",
+      "title": "Feed cronológico",
+      "text": "Las publicaciones se muestran en orden real, sin algoritmos ni clasificaciones ocultas. Lo que ves es lo que se publicó."
+    },
+    {
+      "icon": "bolt",
+      "color": "orange",
+      "title": "Sin scroll infinito",
+      "text": "Navega por las publicaciones a tu propio ritmo, sin bucles adictivos. Una experiencia sana y consciente."
+    },
+    {
+      "icon": "eye-slash",
+      "color": "red",
+      "title": "Sin rastreo, sin anuncios",
+      "text": "Agora no recoge tus datos y nunca impulsa el consumo. Nunca verás publicidad aquí."
+    },
+    {
+      "icon": "user-circle",
+      "color": "green",
+      "title": "Mini perfil opcional",
+      "text": "Puedes añadir una foto, un enlace a tu sitio web y consultar tus estadísticas personales (likes, comentarios, imágenes)."
+    },
+    {
+      "icon": "heart",
+      "color": "yellow",
+      "title": "El respeto es obligatorio",
+      "text": "Agora es un espacio amable. Cualquier comportamiento dañino o tóxico será baneado inmediatamente."
+    },
+    {
+      "icon": "flask",
+      "color": "purple",
+      "title": "En prueba, contigo",
+      "text": "Agora es un prototipo en evolución. Tus comentarios son bienvenidos para co-crear un espacio más humano."
+    },
+    {
+      "icon": "lightbulb",
+      "color": "green",
+      "title": "¿Por qué Agora?",
+      "text": "Porque mereces un lugar para expresarte sin filtros ni influencias. Simple. Humano. Auténtico."
+    }
+  ]
+}

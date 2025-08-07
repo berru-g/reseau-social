@@ -1,0 +1,18 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    
+    # Autoriser l'accès aux fichiers dans /pages/
+    RewriteRule ^(login|register|logout|profile|change-password)/?$ pages/$1.php [L,NC]
+    
+    # Homepage
+    RewriteRule ^$ pages/home.php [L]
+    
+    # Désactiver le listing de répertoire
+    Options -Indexes
+    
+    # Désactiver la protection (TEMPORAIREMENT)
+    # Remove this after testing:
+    SecFilterEngine Off
+    SecFilterScanPOST Off
+</IfModule>

@@ -1,0 +1,3 @@
+.env
+/includes/db.php
+/includes/db_config.php

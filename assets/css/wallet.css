@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600&display=swap');
+
+
+.wallet {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 16px;
+  box-shadow: 0 0 30px rgba(0, 255, 231, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 255, 229, 0.605);
+}
+
+
+.form-wallet {
+  display: grid;
+  margin: 0 auto;
+  gap: 12px;
+  background: #F4F4F4;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: inset 0 0 10px rgba(0, 255, 231, 0.05);
+  margin-bottom: 30px;
+  max-width: 300px;
+}
+.form-wallet
+input[type="text"],
+input[type="number"] {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: #F1F1F1;
+  color: #444;
+  font-size: 1em;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+input:focus {
+  box-shadow: 0 0 0 2px #00ffe7;
+}
+
+btn-wallet {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #00ffe7, #9f7bff);
+  color: #F1F1F1;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+btn-wallet:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 255, 231, 0.3);
+}
+
+#autocomplete-list {
+  background: #1e2228;
+  border-radius: 8px;
+  margin-top: -8px;
+  overflow: hidden;
+}
+
+#autocomplete-list li {
+  padding: 10px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#autocomplete-list li:hover {
+  background: #2a2f37;
+}
+
+#wallet-list {
+  margin-top: 30px;
+}
+
+.crypto-item {
+  display: flex;
+  justify-content: space-between;
+  background: #161b22;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 12px;
+  align-items: center;
+  transition: 0.2s ease;
+}
+
+.crypto-item:hover {
+  box-shadow: 0 0 10px rgba(0, 255, 231, 0.05);
+}
+
+.crypto-name {
+  font-weight: 600;
+  color: #00ffe7;
+}
+
+.crypto-meta {
+  font-size: 0.9em;
+  color: #aaa;
+  margin-top: 5px;
+}
+
+.crypto-actions btn-wallet {
+  margin-left: 10px;
+  background: none;
+  color: #ff7070;
+  border: 1px solid #ff7070;
+}
+
+.crypto-actions btn-wallet:hover {
+  background: #ff7070;
+  color: #0d1117;
+}

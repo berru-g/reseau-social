@@ -1,0 +1,53 @@
+{
+  "title": "Welkom bij Agora",
+  "cards": [
+    {
+      "icon": "user-secret",
+      "color": "purple",
+      "title": "Anonieme registratie",
+      "text": "Geen geverifieerde e‑mail vereist. Maak binnen enkele seconden een account aan, zonder identiteitsplicht."
+    },
+    {
+      "icon": "clock",
+      "color": "blue",
+      "title": "Chronologische feed",
+      "text": "Berichten worden in realtime weergegeven, zonder algoritmes of verborgen filters. Wat je ziet, is wat er gepost is."
+    },
+    {
+      "icon": "bolt",
+      "color": "orange",
+      "title": "Geen eindeloos scrollen",
+      "text": "Blader in je eigen tempo zonder verslavende loops. Een gezonde en bewuste ervaring."
+    },
+    {
+      "icon": "eye-slash",
+      "color": "red",
+      "title": "Geen tracking, geen advertenties",
+      "text": "Agora verzamelt geen gegevens en toont nooit advertenties. Jouw privacy wordt volledig gerespecteerd."
+    },
+    {
+      "icon": "user-circle",
+      "color": "green",
+      "title": "Optioneel mini-profiel",
+      "text": "Voeg een foto toe, een link naar je site en bekijk je statistieken (likes, reacties, gedeelde afbeeldingen)."
+    },
+    {
+      "icon": "heart",
+      "color": "yellow",
+      "title": "Respect is verplicht",
+      "text": "Agora is een vriendelijke ruimte. Toxisch of schadelijk gedrag leidt tot directe blokkering."
+    },
+    {
+      "icon": "flask",
+      "color": "purple",
+      "title": "In testfase, samen met jou",
+      "text": "Agora is een prototype in ontwikkeling. Jouw feedback helpt om samen een menselijkere plek te bouwen."
+    },
+    {
+      "icon": "lightbulb",
+      "color": "green",
+      "title": "Waarom Agora?",
+      "text": "Omdat je een plek verdient om je vrij uit te drukken zonder filter of beïnvloeding. Eenvoudig. Menselijk. Authentiek."
+    }
+  ]
+}

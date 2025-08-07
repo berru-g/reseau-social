@@ -1,0 +1,53 @@
+{
+  "title": "Bem-vindo ao Agora",
+  "cards": [
+    {
+      "icon": "user-secret",
+      "color": "purple",
+      "title": "Registo anónimo",
+      "text": "Não é necessário e‑mail verificado. Cria uma conta em segundos, sem fricção ou identidade imposta."
+    },
+    {
+      "icon": "clock",
+      "color": "blue",
+      "title": "Feed cronológico",
+      "text": "As publicações aparecem em tempo real, sem algoritmo ou ordenação escondida. O que vês é o que foi publicado."
+    },
+    {
+      "icon": "bolt",
+      "color": "orange",
+      "title": "Sem scroll infinito",
+      "text": "Vê os posts ao teu ritmo, sem loops viciantes. Uma experiência saudável e consciente."
+    },
+    {
+      "icon": "eye-slash",
+      "color": "red",
+      "title": "Sem tracking, sem anúncios",
+      "text": "O Agora não recolhe os teus dados nem promove consumo. Não vais ver publicidade aqui."
+    },
+    {
+      "icon": "user-circle",
+      "color": "green",
+      "title": "Mini-perfil opcional",
+      "text": "Podes adicionar uma foto, um link para o teu site e ver as tuas estatísticas (likes, comentários, imagens partilhadas)."
+    },
+    {
+      "icon": "heart",
+      "color": "yellow",
+      "title": "Respeito obrigatório",
+      "text": "O Agora é um espaço amigável. Qualquer comportamento tóxico ou prejudicial será banido imediatamente."
+    },
+    {
+      "icon": "flask",
+      "color": "purple",
+      "title": "Em testes, contigo",
+      "text": "O Agora é um protótipo em evolução. O teu feedback é bem-vindo para cocriar um espaço mais humano."
+    },
+    {
+      "icon": "lightbulb",
+      "color": "green",
+      "title": "Por que o Agora?",
+      "text": "Porque mereces um lugar para expressar-te sem filtros nem influências. Simples. Humano. Autêntico."
+    }
+  ]
+}
