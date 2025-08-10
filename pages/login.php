@@ -35,238 +35,362 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 require_once '../includes/header.php';
 ?>
-<!-- presentation des tools de Data Visualizer 
-<section class="data-tools-showcase">
-    <div class="dt-container">
-        <h2 class="dt-title">
-            <span class="dt-icon"><i class="fas fa-chart-network"></i></span>
-            Transformez vos données en insights
-        </h2>
 
-        <div class="dt-grid">
-           
-            <div class="dt-card">
-                <div class="dt-card-icon csv">
-                    <i class="fa fa-file-csv"></i>
-                </div>
-                <h3 data-i18n-card-title>CSV Transformer</h3>
-                <p data-i18n-card-text>Conversion vers multiples formats</p>
-                <ul class="dt-features">
-                    <li><i class="fas fa-chart-bar"></i> Graphiques dynamiques</li>
-                    <li><i class="fas fa-table"></i> Tableaux interactifs</li>
-                    <li><i class="fas fa-file-export"></i> Exports PNG/PDF</li>
-                </ul>
-            </div>
-
-            
-            <div class="dt-card">
-                <div class="dt-card-icon excel">
-                    <i class="fa fa-file-excel"></i>
-                </div>
-                <h3 data-i18n-card-title>Excel Magic</h3>
-                <p data-i18n-card-text>Analyse avancée</p>
-                <ul class="dt-features">
-                    <li><i class="fas fa-project-diagram"></i> Visualisations 3D</li>
-                    <li><i class="fas fa-bolt"></i> Traitement rapide</li>
-                    <li><i class="fas fa-cloud-upload"></i> Intégration cloud</li>
-                </ul>
-            </div>
-
-            
-            <div class="dt-card">
-                <div class="dt-card-icon json">
-                    <i class="fa fa-file-code"></i>
-                </div>
-                <h3 data-i18n-card-title>JSON Explorer</h3>
-                <p data-i18n-card-text>Analyse de structures</p>
-                <ul class="dt-features">
-                    <li><i class="fas fa-sitemap"></i> Arborescence</li>
-                    <li><i class="fas fa-filter"></i> Filtres intelligents</li>
-                    <li><i class="fas fa-share-alt"></i> Partage configurable</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="dt-cta">
-            <p data-i18n-card-text>Explorez notre galerie publique ou uploader vos propres fichiers</p>
-            <div class="dt-buttons">
-                
-                <a href="#seconnecter" class="dt-btn primary">
-                    <i class="fas fa-rocket"></i> Commencer
-                </a>
-                <a href="#" class="dt-btn secondary">
-                    <i class="fas fa-book-open"></i> Tutoriels
-                </a>
-            </div>
-        </div>
-    </div>
-</section>-->
-<!-- FontAwesome CDN -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  rel="stylesheet"
+/>
+<link
+  href="https://unpkg.com/aos@next/dist/aos.css"
+  rel="stylesheet"
+/>
 
 <style>
-  @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
+  @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
 
-  .agora-intro {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 20px;
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    background: #f5f6fa;
     font-family: "Montserrat", sans-serif;
-    color: #222;
+    color: #2c2c3a;
+    overflow-x: hidden;
+  }
+  a {
+    color: #9c8dea;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
   }
 
-  .agora-intro img {
-    display: flex;
-    margin: 0 auto;
-    width: 400px;
-    height: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 16px;
-    margin-bottom: 30px;
+  /* Canvas background container */
+  #canvas-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background: linear-gradient(135deg, #f0f0fc, #d8d6f9);
   }
 
-  @media screen and (max-width: 400px) {
-    .agora-intro img {
-      width: 100%;
-      max-width: 250px;
-    }
+  /* Container */
+  .agora-intro {
+    max-width: 900px;
+    margin: 70px auto 100px;
+    padding: 0 20px;
   }
 
-  .agora-intro h2 {
+  /* Hero Section */
+  .hero {
     text-align: center;
+    margin-bottom: 60px;
+  }
+  .hero img {
+    width: 280px;
+    max-width: 90vw;
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(156, 141, 234, 0.45);
     margin-bottom: 30px;
+    filter: drop-shadow(0 0 12px #9c8dea88);
+    transition: filter 0.3s ease;
+  }
+  .hero img:hover {
+    filter: drop-shadow(0 0 20px #9c8deacc);
+  }
+  .hero h1 {
+    font-weight: 700;
+    font-size: 3rem;
+    color: #4b47a1;
+    margin-bottom: 8px;
+    text-shadow: 0 0 8px #9c8deaaa;
+  }
+  .hero h1 strong {
+    color: #9c8dea;
+  }
+  .hero p {
+    font-size: 1.2rem;
+    max-width: 580px;
+    margin: 0 auto 30px;
+    color: #5a5780;
+  }
+  .hero .btn-primary {
+    background: #9c8dea;
+    border: none;
+    padding: 15px 40px;
+    color: white;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(156, 141, 234, 0.6);
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+  }
+  .hero .btn-primary:hover {
+    background: #7f6ed7;
+    box-shadow: 0 9px 25px rgba(127, 110, 215, 0.8);
+    transform: translateY(-3px);
   }
 
+  /* Card Grid */
   .card-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
   }
 
+  /* Card */
   .card {
-    flex: 1 1 250px;
-    background: #fff;
-    border-radius: 14px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-    padding: 25px 20px;
+    background: white;
+    border-radius: 18px;
+    padding: 30px 25px 35px;
+    box-shadow:
+      0 2px 8px rgba(156, 141, 234, 0.12),
+      0 12px 20px rgba(156, 141, 234, 0.18);
     text-align: center;
+    cursor: default;
+    transition:
+      box-shadow 0.4s ease,
+      transform 0.3s ease,
+      background 0.3s ease;
+    will-change: transform;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    top: -40%;
+    left: -40%;
+    width: 180%;
+    height: 180%;
+    background: linear-gradient(
+      120deg,
+      #9c8dea,
+      #7869e2,
+      #b5a9f8,
+      #9c8dea
+    );
+    filter: blur(55px);
+    opacity: 0.3;
+    transition: opacity 0.5s ease;
+    z-index: 0;
+    border-radius: 50%;
+  }
+  .card:hover::before {
+    opacity: 0.55;
+  }
+  .card:hover {
+    transform: translateY(-12px);
+    box-shadow:
+      0 6px 24px rgba(156, 141, 234, 0.35),
+      0 20px 36px rgba(156, 141, 234, 0.3);
+    background: #f9f8ff;
+  }
+  .card i {
+    font-size: 40px;
+    color: #9c8dea;
+    margin-bottom: 18px;
+    position: relative;
+    z-index: 1;
     transition: transform 0.3s ease;
   }
-
-  .card:hover {
-    transform: translateY(-5px);
+  .card:hover i {
+    transform: scale(1.25) rotate(10deg);
   }
-
-  .card i {
-    font-size: 30px;
-    margin-bottom: 15px;
-  }
-
   .card h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    color: #111;
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #5a5780;
+    position: relative;
+    z-index: 1;
   }
-
   .card p {
-    font-size: 15px;
-    color: #555;
+    font-size: 15.8px;
     line-height: 1.5;
-  }
-
-  /* Icon Colors */
-  .icon-red {
-    color: #ee6055;
-  }
-
-  .icon-green {
-    color: #60d394;
-  }
-
-  .icon-blue {
-    color: #3498db;
-  }
-
-  .icon-yellow {
-    color: #ffd97d;
-  }
-
-  .icon-purple {
-    color: #ab9ff2;
-  }
-
-  .icon-orange {
-    color: #f9b87fff;
+    color: #777493;
+    position: relative;
+    z-index: 1;
   }
 
   /* Responsive */
-  @media screen and (max-width: 400px) {
-    .card {
-      flex: 1 1 100%;
+  @media (max-width: 480px) {
+    .hero h1 {
+      font-size: 2.2rem;
+    }
+    .hero p {
+      font-size: 1rem;
     }
   }
 </style>
 
 <section class="agora-intro">
-  <img src="<?= BASE_URL ?>/assets/img/fullmotionpres.gif" alt="Agora Social Feed - Motion Design" />
-  <h2 data-i18n="title">Bienvenue sur <strong>Agora</strong> Social Feed</h2>
+  <canvas id="canvas-bg"></canvas>
 
-  <div class="card-grid">
+  <div class="hero" data-aos="fade-up" data-aos-duration="1200">
+    <!--<img
+      src="<?= BASE_URL ?>/assets/img/fullmotionpres.gif"
+      alt="Agora Social Feed - Motion Design"
+      loading="lazy"
+    />-->
+    <h1>
+      Bienvenue sur <strong>Agora</strong> Social Feed
+    </h1>
+    <p>
+      Agora Social Feed contient un Réseau social minimaliste et une plateforme
+      de partage et visualisation graphique de fichiers CSV, Excel et Json.
+    </p>
+    <a href="<?= BASE_URL ?>/pages/register.php"><button class="btn-primary" aria-label="Essayer Agora Social Feed maintenant">
+      Essayer maintenant
+    </button></a>
+  </div>
 
+  <div
+    class="card-grid"
+    data-aos="fade-up"
+    data-aos-delay="300"
+    data-aos-duration="1000"
+  >
     <div class="card" data-i18n-card>
-      <i class="fas fa-user-circle icon-blue"></i>
+      <i class="fas fa-chart-line"></i>
       <h3 data-i18n-card-title>Features</h3>
-      <p data-i18n-card-text>Agora Social Feed contient un Réseau social minimaliste et une plateforme de partage et
-        visualisation graphique de fichiers CSV, Excel et Json. </p>
-    </div>
-
-    <div class="card" data-i18n-card data-i18n-card>
-      <i class="fas fa-user-secret icon-purple"></i>
-      <h3 data-i18n-card-title data-i18n-card-title>Anonyme</h3>
-      <p data-i18n-card-text>Inscription gratuite. Aucun mail vérifié requis. Crée un compte en quelques secondes, sans
-        friction ni identité
-        imposée.</p>
-    </div>
-
-    <!--<div class="card" data-i18n-card>
-      <i class="fas fa-clock icon-blue"></i>
-      <h3 data-i18n-card-title>Fil chronologique</h3>
-      <p data-i18n-card-text>Les publications sont affichées dans l’ordre réel, sans algorithme ni tri caché. Ce que tu vois est ce qui est posté.</p>
+      <p data-i18n-card-text>
+        Agora Social Feed contient un Réseau social minimaliste et une plateforme
+        de partage et visualisation graphique de fichiers CSV, Excel et Json.
+      </p>
     </div>
 
     <div class="card" data-i18n-card>
-      <i class="fas fa-bolt icon-orange"></i>
-      <h3 data-i18n-card-title>Sans scroll infini</h3>
-      <p data-i18n-card-text>Tu parcours les posts à ton rythme, sans boucle addictive. Un usage sain et maîtrisé.</p>
-    </div>-->
+      <i class="fas fa-user-secret"></i>
+      <h3 data-i18n-card-title>Anonyme</h3>
+      <p data-i18n-card-text>
+        Inscription gratuite. Aucun mail vérifié requis. Crée un compte en quelques
+        secondes, sans friction ni identité imposée.
+      </p>
+    </div>
 
     <div class="card" data-i18n-card>
-      <i class="fas fa-eye-slash icon-green"></i>
+      <i class="fas fa-eye-slash"></i>
       <h3 data-i18n-card-title>Pas de tracking, pas de pub</h3>
-      <p data-i18n-card-text>Aucune collecte ou exploitation des données. Pas de pub ni de notif.</p>
+      <p data-i18n-card-text>
+        Aucune collecte ou exploitation des données. Pas de pub ni de notif.
+      </p>
     </div>
-
-    <!--<div class="card" data-i18n-card>
-      <i class="fas fa-heart icon-yellow"></i>
-      <h3 data-i18n-card-title>Respect obligatoire</h3>
-      <p data-i18n-card-text>Agora est un espace bienveillant. Tout comportement malveillant est banni sans préavis.</p>
-    </div>-->
 
     <div class="card" data-i18n-card>
-      <i class="fas fa-flask icon-yellow"></i>
+      <i class="fas fa-flask"></i>
       <h3 data-i18n-card-title>En test, avec toi</h3>
-      <p data-i18n-card-text>Agora est un prototype. Tes retours sont les bienvenus pour co-construire cet espace suivant les besoins de chacun.</p>
+      <p data-i18n-card-text>
+        Agora est un prototype. Tes retours sont les bienvenus pour co-construire cet
+        espace suivant les besoins de chacun.
+      </p>
     </div>
-
-    <!--<div class="card" data-i18n-card>
-      <i class="fas fa-lightbulb icon-green"></i>
-      <h3 data-i18n-card-title>Pourquoi Agora ?</h3>
-      <p data-i18n-card-text>Parce que tu mérites un lieu d’expression sans filtre ni influence. Sobre. Humaine. Authentique.</p>
-    </div>-->
-
   </div>
 </section>
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+    once: true,
+    easing: "ease-in-out-cubic",
+    duration: 900,
+  });
+
+  // Canvas background - points network (simple, performant)
+
+  const canvas = document.getElementById("canvas-bg");
+  const ctx = canvas.getContext("2d");
+  let width, height;
+  let points = [];
+
+  function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width * devicePixelRatio;
+    canvas.height = height * devicePixelRatio;
+    canvas.style.width = width + "px";
+    canvas.style.height = height + "px";
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+  }
+
+  class Point {
+    constructor(x, y, vx, vy) {
+      this.x = x;
+      this.y = y;
+      this.vx = vx;
+      this.vy = vy;
+      this.radius = 2;
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      if (this.x < 0 || this.x > width) this.vx = -this.vx;
+      if (this.y < 0 || this.y > height) this.vy = -this.vy;
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(156, 141, 234, 0.7)";
+      ctx.fill();
+    }
+  }
+
+  function connectPoints() {
+    let maxDist = 130;
+    for (let i = 0; i < points.length; i++) {
+      for (let j = i + 1; j < points.length; j++) {
+        let dx = points[i].x - points[j].x;
+        let dy = points[i].y - points[j].y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < maxDist) {
+          ctx.beginPath();
+          ctx.strokeStyle = `rgba(156, 141, 234, ${1 - dist / maxDist})`;
+          ctx.lineWidth = 1;
+          ctx.moveTo(points[i].x, points[i].y);
+          ctx.lineTo(points[j].x, points[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    points.forEach((p) => {
+      p.update();
+      p.draw();
+    });
+    connectPoints();
+    requestAnimationFrame(animate);
+  }
+
+  function init() {
+    points = [];
+    for (let i = 0; i < 40; i++) {
+      let x = Math.random() * width;
+      let y = Math.random() * height;
+      let vx = (Math.random() - 0.5) * 0.3;
+      let vy = (Math.random() - 0.5) * 0.3;
+      points.push(new Point(x, y, vx, vy));
+    }
+    animate();
+  }
+
+  window.addEventListener("resize", () => {
+    resize();
+    init();
+  });
+
+  resize();
+  init();
+</script>
+
 
 
 
