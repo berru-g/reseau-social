@@ -86,12 +86,14 @@ require_once '../includes/header.php';
     <div class="profile-header">
         <div class="profile-avatar-section">
             <div class="avatar-edit">
-                <img src="<?= !empty($profileUser['profile_picture']) ? htmlspecialchars($profileUser['profile_picture']) : 'https://ui-avatars.com/api/?name=' . urlencode($profileUser['username']) . '&background=ab9ff2&color=fff' ?>" alt="Avatar de <?= htmlspecialchars($profileUser['username']) ?>" class="avatar-image">
+                <img src="<?= !empty($profileUser['profile_picture']) ? htmlspecialchars($profileUser['profile_picture']) : 'https://ui-avatars.com/api/?name=' . urlencode($profileUser['username']) . '&background=ab9ff2&color=fff' ?>"
+                    alt="Avatar de <?= htmlspecialchars($profileUser['username']) ?>" class="avatar-image">
 
                 <?php if ($userId === $profileUserId): ?>
                     <form method="post" enctype="multipart/form-data" class="avatar-form">
                         <input type="file" name="profile_picture" id="profile_picture" accept="image/*" hidden>
-                        <button type="button" class="btn-primary" onclick="document.getElementById('profile_picture').click()">
+                        <button type="button" class="btn-primary"
+                            onclick="document.getElementById('profile_picture').click()">
                             <i class="fas fa-camera"></i> Changer
                         </button>
                         <button type="submit" class="btn-ghost" id="submit-btn" style="display:none;">
@@ -117,7 +119,8 @@ require_once '../includes/header.php';
                         <i class="fas fa-envelope"></i> <?= htmlspecialchars($profileUser['email']) ?>
                     </span>
                     <span class="meta-item">
-                        <i class="fas fa-calendar-alt"></i> Membre depuis le <?= date('d/m/Y', strtotime($profileUser['created_at'])) ?>
+                        <i class="fas fa-calendar-alt"></i> Membre depuis le
+                        <?= date('d/m/Y', strtotime($profileUser['created_at'])) ?>
                     </span>
                 </div>
             </div>
@@ -134,14 +137,47 @@ require_once '../includes/header.php';
 
     <h3 class="section-title"><i class="fas fa-chart-pie"></i> Dashboard</h3>
     <div class="stats-grid">
-        <div class="stat-card"><div class="stat-icon bg-purple"><i class="fas fa-image"></i></div><div class="stat-info"><span class="stat-count"><?= $imageCount ?></span><span class="stat-label">Images</span></div></div>
-        <div class="stat-card"><div class="stat-icon bg-blue"><i class="fas fa-file-upload"></i></div><div class="stat-info"><span class="stat-count"><?= $fileCount ?></span><span class="stat-label">Fichiers</span></div></div>
-        <div class="stat-card"><div class="stat-icon bg-green"><i class="fas fa-globe"></i></div><div class="stat-info"><span class="stat-count"><?= $publicFileCount ?></span><span class="stat-label">Publics</span></div></div>
-        <div class="stat-card"><div class="stat-icon bg-orange"><i class="fas fa-comment"></i></div><div class="stat-info"><span class="stat-count"><?= $commentCount ?></span><span class="stat-label">Commentaires</span></div></div>
-        <div class="stat-card"><div class="stat-icon bg-red"><i class="fas fa-heart"></i></div><div class="stat-info"><span class="stat-count"><?= $likesReceived ?></span><span class="stat-label">Likes reçus</span></div></div>
-        <?php if ($userId === $profileUserId): ?>
-        <div class="stat-card clickable" onclick="location.href='<?= BASE_URL ?>/pages/mon-dashboard.php'"><div class="stat-icon bg-gradient"><i class="fas fa-chart-line"></i></div><div class="stat-info"><span class="stat-label">Modération</span><span class="stat-link">& statistiques <i class="fas fa-arrow-right"></i></span></div></div>
+        <div class="stat-card">
+            <div class="stat-icon bg-purple"><i class="fas fa-image"></i></div>
+            <div class="stat-info"><span class="stat-count"><?= $imageCount ?></span><span
+                    class="stat-label">Images</span></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon bg-blue"><i class="fas fa-file-upload"></i></div>
+            <div class="stat-info"><span class="stat-count"><?= $fileCount ?></span><span
+                    class="stat-label">Fichiers</span></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon bg-green"><i class="fas fa-globe"></i></div>
+            <div class="stat-info"><span class="stat-count"><?= $publicFileCount ?></span><span
+                    class="stat-label">Publics</span></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon bg-orange"><i class="fas fa-comment"></i></div>
+            <div class="stat-info"><span class="stat-count"><?= $commentCount ?></span><span
+                    class="stat-label">Commentaires</span></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon bg-red"><i class="fas fa-heart"></i></div>
+            <div class="stat-info"><span class="stat-count"><?= $likesReceived ?></span><span class="stat-label">Likes
+                    reçus</span></div>
+        </div>
+        <!-- modif : if ($user['username'] !== 'name de user autorisé' || $user['email'] !== 'maildeuserAuto@gmail.com')
+            || est toujours vrai dès qu’un seul des deux n’est pas bon, pour vérifier que c’est bien moi et uniquement moi alors utiliser, && -->
+        <?php if (
+            isset($user['username'], $user['email']) &&
+            $user['username'] === 'berru' &&
+            $user['email'] === 'g.leberruyer@gmail.com'
+        ): ?>
+            <div class="stat-card clickable" onclick="location.href='<?= BASE_URL ?>/pages/mon-dashboard.php'">
+                <div class="stat-icon bg-gradient"><i class="fas fa-chart-line"></i></div>
+                <div class="stat-info">
+                    <span class="stat-label">Modération</span>
+                    <span class="stat-link">& statistiques <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
         <?php endif; ?>
+
     </div>
 
     <h3 class="section-title"><i class="fas fa-file"></i> Fichier Public</h3>
@@ -149,7 +185,8 @@ require_once '../includes/header.php';
         <?php foreach ($userFiles as $file): ?>
             <div class="file-card" style="max-width:200px;display:flex;">
                 <div class="file-icon">
-                    <i class="fas fa-file<?= $file['file_type'] === 'csv' ? '-csv' : ($file['file_type'] === 'excel' ? '-excel' : ($file['file_type'] === 'json' ? '-code' : '')) ?>"></i>
+                    <i
+                        class="fas fa-file<?= $file['file_type'] === 'csv' ? '-csv' : ($file['file_type'] === 'excel' ? '-excel' : ($file['file_type'] === 'json' ? '-code' : '')) ?>"></i>
                 </div>
                 <!-- à adapter comme gallery et search -->
                 <div class="file-info">
@@ -158,7 +195,8 @@ require_once '../includes/header.php';
                     <small class="file-type"><?= strtoupper($file['file_type']) ?></small>
                 </div>
                 <div class="file-actions">
-                    <a href="<?= str_replace('../', BASE_URL . '/', $file['file_path']) ?>" download class="btn btn-sm btn-success">
+                    <a href="<?= str_replace('../', BASE_URL . '/', $file['file_path']) ?>" download
+                        class="btn btn-sm btn-success">
                         <i class="fas fa-download"></i>
                     </a>
                     <a href="view_chart.php?id=<?= $file['id'] ?>" class="btn btn-info">
@@ -170,22 +208,30 @@ require_once '../includes/header.php';
     </div>
 
     <?php if ($userId === $profileUserId): ?>
-    <div class="profile-edit-section">
-        <h3 class="section-title"><i class="fas fa-user-cog"></i> Personnalisation</h3>
-        <form method="post" class="website-form">
-            <div class="form-group">
-                <label for="website_url">Votre site web :</label>
-                <div class="input-group">
-                    <input type="url" name="website_url" id="website_url" value="<?= htmlspecialchars($user['website_url'] ?? '') ?>" placeholder="https://example.com">
-                    <button type="submit" class="btn-primary">Mettre à jour</button>
+        <div class="profile-edit-section">
+            <h3 class="section-title"><i class="fas fa-user-cog"></i> Personnalisation</h3>
+            <form method="post" class="website-form">
+                <div class="form-group">
+                    <label for="website_url">Votre site web :</label>
+                    <div class="input-group">
+                        <input type="url" name="website_url" id="website_url"
+                            value="<?= htmlspecialchars($user['website_url'] ?? '') ?>" placeholder="https://example.com">
+                        <button type="submit" class="btn-primary">Mettre à jour</button>
+                    </div>
                 </div>
+            </form>
+            <div class="action-buttons">
+                <a href="change-password.php" class="btn-primary"><i class="fas fa-key"></i> Changer le mot de passe</a>
+                <?php if (
+                    isset($user['username'], $user['email']) &&
+                    $user['username'] === 'berru' &&
+                    $user['email'] === 'g.leberruyer@gmail.com'
+                ): ?>
+                    <a href="<?= BASE_URL ?>/wallet/wallet.php" class="btn-ghost"><i class="fas fa-chart-pie"></i> Wallet all in
+                        one</a>
+                <?php endif; ?>
             </div>
-        </form>
-        <div class="action-buttons">
-            <a href="change-password.php" class="btn-primary"><i class="fas fa-key"></i> Changer le mot de passe</a>
-            <a href="<?= BASE_URL ?>/wallet/wallet.php" class="btn-ghost"><i class="fas fa-chart-pie"></i> Wallet all in one</a>
         </div>
-    </div>
     <?php endif; ?>
 </div>
 
