@@ -33,9 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 }
 
-require_once '../includes/header.php';
-?>
 
+?>
+<link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/style.css">
 <link
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
   rel="stylesheet"
@@ -148,6 +148,7 @@ require_once '../includes/header.php';
   .card {
     background: white;
     border-radius: 18px;
+    border: 1px solid white;
     padding: 30px 25px 35px;
     box-shadow:
       0 2px 8px rgba(156, 141, 234, 0.12),
@@ -194,7 +195,7 @@ require_once '../includes/header.php';
   }
   .card i {
     font-size: 40px;
-    color: #9c8dea;
+    color: #fff;
     margin-bottom: 18px;
     position: relative;
     z-index: 1;

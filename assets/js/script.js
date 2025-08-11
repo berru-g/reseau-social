@@ -1,3 +1,4 @@
+// version like anim : A refaire avec le php pour voir les post déja liker + color. nb: Bug de reload
 document.addEventListener('DOMContentLoaded', function () {
     // 👇 Like sans reload brutal
     document.querySelectorAll('.like-btn').forEach(btn => {

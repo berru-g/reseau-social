@@ -21,7 +21,7 @@ $owner = getUserById($file['owner_id']);
 
 require_once '../includes/header.php';
 ?>
-
+<link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/data-to-chart.css">
 <div class="data-visualizer-header">
     <h1><i class="fas fa-chart-line"></i> Data Visualizer</h1>
     <p><i class="fas fa-file"></i> <?= htmlspecialchars($file['file_name']) ?></p>

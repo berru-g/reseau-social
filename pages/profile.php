@@ -140,7 +140,7 @@ require_once '../includes/header.php';
         <div class="stat-card"><div class="stat-icon bg-orange"><i class="fas fa-comment"></i></div><div class="stat-info"><span class="stat-count"><?= $commentCount ?></span><span class="stat-label">Commentaires</span></div></div>
         <div class="stat-card"><div class="stat-icon bg-red"><i class="fas fa-heart"></i></div><div class="stat-info"><span class="stat-count"><?= $likesReceived ?></span><span class="stat-label">Likes reçus</span></div></div>
         <?php if ($userId === $profileUserId): ?>
-        <div class="stat-card clickable" onclick="location.href='<?= BASE_URL ?>/pages/mon-dashboard.php'"><div class="stat-icon bg-gradient"><i class="fas fa-chart-line"></i></div><div class="stat-info"><span class="stat-label">Voir toutes</span><span class="stat-link">les statistiques <i class="fas fa-arrow-right"></i></span></div></div>
+        <div class="stat-card clickable" onclick="location.href='<?= BASE_URL ?>/pages/mon-dashboard.php'"><div class="stat-icon bg-gradient"><i class="fas fa-chart-line"></i></div><div class="stat-info"><span class="stat-label">Modération</span><span class="stat-link">& statistiques <i class="fas fa-arrow-right"></i></span></div></div>
         <?php endif; ?>
     </div>
 

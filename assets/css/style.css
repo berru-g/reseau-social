@@ -23,7 +23,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  border: 1px solid #2575fc;
+ 
 }
 
 body {
@@ -167,9 +167,10 @@ h3 {
 .logout {
   border: 1px solid var(--error-color);
   color: var(--error-color);
+  border-radius: 8px;
 }
 .logout i {
-  fill: var(--error-color);
+  color: var(--error-color);
 }
 .dropdown-content i {
   margin-right: 12px;
@@ -538,6 +539,9 @@ h3 {
 .like-btn.liked {
   color: var(--error-color);
   animation: pop 0.3s ease;
+}
+.like-btn.liked i {
+  color: var(--error-color);
 }
 
 @keyframes pop {
