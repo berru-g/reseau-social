@@ -144,11 +144,10 @@ require_once __DIR__ . '/functions.php';
           <?php if (isLoggedIn()): ?>
             <a href="<?= BASE_URL ?>/pages/view_file.php"><i class="fa-solid fa-inbox"></i> Public file</a>
             <a href="<?= BASE_URL ?>/pages/gallery.php"><i class="fas fa-download"></i> Upload</a>
-            <!--<a href="<?= BASE_URL ?>/pages/facture.php"><i class="fa-solid fa-receipt"></i> Create Invoice</a>
-                        <a href="<?= BASE_URL ?>/pages/format.php"><i class="fas fa-file-csv"></i> Data to Table</a>-->
+           
             <a href="<?= BASE_URL ?>/pages/data-to-chart.php"><i class="fa-solid fa-chart-line"></i> Data
               Visualizer</a>
-            <!--<a href="<?= BASE_URL ?>/pages/codepen.php"><i class="fas fa-code"></i> Codepen</a>-->
+            <a href="<?= BASE_URL ?>/pages/json-to-map.php"><i class="fas fa-project-diagram"></i> JSON Mind Map</a>
           <?php endif; ?>
         </div>
       </div>

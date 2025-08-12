@@ -23,7 +23,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
- 
 }
 
 body {
@@ -170,7 +169,7 @@ h3 {
   border-radius: 8px;
 }
 .logout i {
-  color: var(--error-color);
+  color: var(--error-color); /*fill marche po*/
 }
 .dropdown-content i {
   margin-right: 12px;
