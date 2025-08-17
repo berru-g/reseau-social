@@ -1057,7 +1057,13 @@ input {
   animation: slideIn 0.4s ease-out;
 }
 
-/* gallery */
+/* gallery et public files */
+
+.search-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 .file-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -1146,6 +1152,10 @@ input {
   color: #4285F4;
 }
 
+.file-icon .fas.fa-database {
+  color: #ab9ff2;
+}
+
 .file-info {
   flex-grow: 1;
 }
@@ -1171,7 +1181,8 @@ input {
 
 .file-type.csv {
   background: #d4edda;
-  color: #155724;
+  border: 1px dashed #155724;
+  color: #444
 }
 
 .file-type.excel {
@@ -1187,6 +1198,10 @@ input {
 .file-type.googlesheet {
   background: #d1e3f6;
   color: #0c63e4;
+}
+.file-type.sql {
+  background: #ab9ff2;
+  color: #fff;
 }
 
 .file-actions {
@@ -1228,7 +1243,10 @@ input {
   background: #fff3cd;
   color: #856404;
 }
-
+.badge-sql {
+  background: #fff3cd;
+  color: var(--primary-color);
+}
 @media (max-width: 768px) {
   .file-gallery {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -1239,12 +1257,6 @@ input {
   .file-gallery {
     grid-template-columns: 1fr;
   }
-}
-
-/* Search upload et affiche */
-.search-container {
-  max-width: 800px;
-  margin: 0 auto;
 }
 
 .ui-autocomplete {

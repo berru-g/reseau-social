@@ -134,7 +134,7 @@ require_once '../includes/header.php';
                                         <?php break; ?>
                                     <?php case 'xlsx':
                                     case 'xls': ?>
-                                        <i class="fas fa-file-excel"></i>
+                                        <i class="fas fa-file"></i>
                                         <?php break; ?>
                                     <?php case 'json': ?>
                                         <i class="fas fa-file-code"></i>
@@ -143,7 +143,7 @@ require_once '../includes/header.php';
                                         <i class="fas fa-database"></i>
                                         <?php break; ?>
                                     <?php default: ?>
-                                        <i class="fas fa-file"></i>
+                                        <i class="fas fa-file-excel"></i>
                                 <?php endswitch; ?>
                             </div>
                         <?php endif; ?>

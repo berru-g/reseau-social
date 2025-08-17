@@ -131,9 +131,6 @@ require_once '../includes/header.php';
                     <div id="editor-view" class="view-container hidden">
                         <div id="sqlEditor" style="height:100%; width:100%;"></div>
                         <div class="editor-actions">
-                            <!--<button id="updateMindmapBtn" class="primary">
-                                <i class="fas fa-sync-alt"></i> Mettre à jour
-                            </button>-->
                         </div>
                     </div>
 
