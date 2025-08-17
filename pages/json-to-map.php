@@ -13,276 +13,79 @@ require_once '../includes/header.php';
 ?>
 
 <head>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/jsonto.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://unpkg.com/vis-network@9.1.2/standalone/umd/vis-network.min.js"></script>
-    <style>
-        :root {
-            --primary: #ab9ff2;
-            --primary-dark: #8a7de0;
-            --accent: #2575fc;
-            --success: #60d394;
-            --error: #ee6055;
-            --text: #333333;
-            --text-light: #777777;
-            --bg: #f8f9fa;
-            --card-bg: #ffffff;
-            --border: #e0e0e0;
-            --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            --sidebar-width: 280px;
-        }
-
-        body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: var(--bg);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        /* Header */
-        .top {
-            background: var(--card-bg);
-            box-shadow: var(--shadow);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .top h2 {
-            color: var(--primary);
-            text-align: center;
-            margin: 0;
-            font-size: 1.5rem;
-        }
-
-        /* Layout Principal */
-        .main-container {
-            display: flex;
-            flex: 1;
-            position: relative;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: var(--sidebar-width);
-            background: var(--card-bg);
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
-            padding: 20px;
-            overflow-y: auto;
-            transition: transform 0.3s ease;
-            position: fixed;
-            height: calc(100vh - 60px);
-        }
-
-        .sidebar-toggle {
-            display: none;
-            position: fixed;
-            left: 10px;
-            top: 100px;
-            z-index: 101;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-        }
-
-        /* Contenu Principal */
-        .content {
-            flex: 1;
-            margin-left: var(--sidebar-width);
-            padding: 20px;
-            transition: margin 0.3s ease;
-        }
-
-        /* Upload Zone */
-        .upload-dropzone {
-            border: 2px dashed #6c757d;
-            border-radius: 10px;
-            padding: 40px 30px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            background: white;
-            max-width: 250px;
-            margin: 0 auto;
-            box-shadow: var(--card-shadow);
-        }
-
-        .upload-dropzone i {
-            color: #2575fc;
-        }
-
-        .upload-dropzone:hover,
-        .upload-dropzone.dragover {
-            border-color: #2575fc;
-            background-color: rgba(13, 110, 253, 0.05);
-            transform: translateY(-2px);
-        }
-
-        /* Mind Map Container */
-        #mindMap {
-            width: 100%;
-            height: calc(100vh - 180px);
-            min-height: 500px;
-            background: var(--card-bg);
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-        }
-
-        /* Outils */
-        .tool-section {
-            margin-bottom: 25px;
-        }
-
-        .tool-section h3 {
-            font-size: 0.95rem;
-            color: var(--text);
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .color-palette {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .color-option {
-            width: 100%;
-            height: 30px;
-            border-radius: 4px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: all 0.2s;
-        }
-
-        .color-option.active {
-            border-color: var(--text);
-            transform: scale(1.05);
-        }
-
-        select,
-        button {
-            width: 100%;
-            padding: 10px 12px;
-            border-radius: 6px;
-            border: 1px solid var(--border);
-            background: var(--card-bg);
-            color: var(--text);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-
-        button {
-            background: var(--primary);
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-weight: 500;
-            transition: background 0.2s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        button:hover {
-            background: var(--primary-dark);
-        }
-
-        button.secondary {
-            background: var(--accent);
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .sidebar {
-                transform: translateX(-100%);
-                position: fixed;
-                z-index: 100;
-                height: calc(100vh - 60px);
-                top: 60px;
-            }
-
-            .sidebar.active {
-                transform: translateX(0);
-            }
-
-            .content {
-                margin-left: 0;
-            }
-
-            .sidebar-toggle {
-                display: block;
-            }
-        }
-
-        /* Utilitaires */
-        .hidden {
-            display: none;
-        }
-
-        .text-center {
-            text-align: center;
-        }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsoneditor@9.9.0/dist/jsoneditor.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/jsoneditor@9.9.0/dist/jsoneditor.min.css" rel="stylesheet">
+ 
 </head>
 
 <body>
-    <div class="top">
-        <h2><i class="fas fa-project-diagram"></i> JSON Mind Mapper</h2>
-    </div>
+    <section class="tool-header">
+        <div class="tool-header-container">
+            <h2><i class="fas fa-diagram-project"></i> JSON Visualizer Pro</h2>
+            <div class="header-actions">
+                <button class="outline" id="toggleEditorBtn">
+                    <i class="fas fa-code"></i> Éditeur JSON
+                </button>
+            </div>
+        </div>
+    </section>
 
     <button class="sidebar-toggle" id="sidebarToggle">
-        <i class="fa-solid fa-gear"></i>
+        <i class="fas fa-sliders-h"></i>
     </button>
 
     <div class="main-container">
         <!-- Sidebar -->
         <div class="sidebar" id="sidebar">
             <div class="tool-section">
-                <h3><i class="fas fa-palette"></i> Couleur Principale</h3>
+                <h3><i class="fas fa-upload"></i> Importation</h3>
+                <input type="text" id="jsonUrl" placeholder="URL de l'api" class="mb-4">
+                <button id="loadFromUrlBtn" class="secondary">
+                    <i class="fas fa-cloud-download-alt"></i> Charger depuis URL
+                </button>
+            </div>
+
+            <div class="tool-section">
+                <h3><i class="fas fa-palette"></i> Personnalisation</h3>
                 <div class="color-palette">
-                    <div class="color-option active" style="background: var(--primary);" data-color="var(--primary)">
-                    </div>
-                    <div class="color-option" style="background: var(--accent);" data-color="var(--accent)"></div>
-                    <div class="color-option" style="background: var(--success);" data-color="var(--success)"></div>
+                    <div class="color-option active" style="background: #a395f2ff;" data-color="#9685f6ff"></div>
+                    <div class="color-option" style="background: #3b82f6;" data-color="#3b82f6"></div>
+                    <div class="color-option" style="background: #60d394;;" data-color="#60d394;"></div>
                     <div class="color-option" style="background: #ffd97d;" data-color="#ffd97d"></div>
-                    <div class="color-option" style="background: #faaf72;" data-color="#faaf72"></div>
-                    <div class="color-option" style="background: #ee6055;" data-color="#ee6055"></div>
+                    <div class="color-option" style="background: #ef4444;" data-color="#ef4444"></div>
+                    <div class="color-option" style="background: #ab9ff2;" data-color="#ab9ff2"></div>
+                    <div class="color-option" style="background: #fcd5dc;" data-color="#fcd5dc"></div>
+                    <div class="color-option" style="background: #3ad38b;" data-color="#3ad38b"></div>
+                    <div class="color-option" style="background: #ff7243;" data-color="#ff7243"></div>
+                    <div class="color-option" style="background: #64748b;" data-color="#64748b"></div>
                 </div>
             </div>
 
             <div class="tool-section">
-                <h3><i class="fas fa-shapes"></i> Forme des Nodes</h3>
+                <h3><i class="fas fa-sliders-h"></i> Options de visualisation</h3>
+                <label for="nodeShape">Forme des nœuds</label>
                 <select id="nodeShape">
                     <option value="box">Boîte</option>
                     <option value="ellipse">Ellipse</option>
                     <option value="diamond">Losange</option>
                     <option value="circle">Cercle</option>
+                    <option value="database">Base de données</option>
+                    <option value="image">Image</option>
                 </select>
-            </div>
 
-            <div class="tool-section">
-                <h3><i class="fas fa-project-diagram"></i> Type de Layout</h3>
+                <label for="layoutType">Type de disposition</label>
                 <select id="layoutType">
                     <option value="hierarchical">Hiérarchique</option>
                     <option value="standard">Standard</option>
+                    <option value="circular">Circulaire</option>
                 </select>
-            </div>
 
-            <div class="tool-section">
-                <h3><i class="fas fa-arrows-alt"></i> Direction</h3>
+                <label for="layoutDirection">Direction</label>
                 <select id="layoutDirection">
                     <option value="UD">Haut-Bas</option>
                     <option value="LR">Gauche-Droite</option>
@@ -292,280 +95,848 @@ require_once '../includes/header.php';
             </div>
 
             <div class="tool-section">
-                <h3><i class="fas fa-cog"></i> Options</h3>
-                <button id="resetBtn">
-                    <i class="fas fa-redo"></i> Réinitialiser
+                <h3><i class="fas fa-tools"></i> Actions</h3>
+                <button id="resetBtn" class="outline">
+                    <i class="fas fa-trash-alt"></i> Réinitialiser
                 </button>
-                <button id="exportBtn" class="secondary mt-2">
-                    <i class="fas fa-download"></i> Exporter
-                </button>
+                <div class="editor-toolbar-actions mt-2">
+                    <button id="exportPngBtn" class="secondary">
+                        <i class="fas fa-image"></i> Exporter PNG
+                    </button>
+                    <button id="exportJsonBtn">
+                        <i class="fas fa-file-export"></i> Exporter JSON
+                    </button>
+                </div>
             </div>
         </div>
 
-        <!-- Contenu Principal -->
+        <!-- Main Content -->
         <div class="content" id="mainContent">
-            <div class="upload-dropzone" id="dropZone">
-                <i class="fas fa-file-upload fa-3x"></i>
-                <p><strong>Déposez un fichier JSON ici</strong></p>
-                <p class="text-light">Ou cliquez pour sélectionner</p>
-                <input type="file" id="jsonUpload" accept=".json" class="hidden">
+            <div class="upload-container" id="uploadContainer">
+                <div class="upload-dropzone" id="dropZone">
+                    <i class="fas fa-file-upload"></i>
+                    <h3>Déposez un fichier JSON ici</h3>
+                    <p>Ou cliquez pour sélectionner un fichier</p>
+                    <input type="file" id="jsonUpload" accept=".json,application/json">
+                </div>
+                <div class="upload-options">
+                    <button id="sampleDataBtn" class="outline">
+                        <i class="fas fa-vial"></i> Charger un exemple
+                    </button>
+                    <button id="pasteJsonBtn">
+                        <i class="fas fa-paste"></i> Coller du JSON
+                    </button>
+                </div>
             </div>
 
-            <div id="mindMapContainer" class="hidden">
-                <div id="mindMap"></div>
+            <div id="visualizationArea" class="hidden">
+                <div class="tabs">
+                    <div class="tab active" data-view="mindmap">Mind Map</div>
+                    <div class="tab" data-view="editor">Éditeur JSON</div>
+                    <div class="tab" data-view="tree">Arbre</div>
+                    <div class="tab" data-view="graph">Graphique</div>
+                </div>
+
+                <div class="visualization-container">
+                    <!-- Mind Map View -->
+                    <div id="mindmap-view" class="view-container">
+                        <div id="mindMap"></div>
+                    </div>
+
+                    <!-- JSON Editor View -->
+                    <div id="editor-view" class="view-container hidden">
+                        <div id="jsoneditor"></div>
+                    </div>
+
+                    <!-- Tree View -->
+                    <div id="tree-view" class="view-container hidden">
+                        <div id="treeDiagram"></div>
+                    </div>
+
+                    <!-- Graph View -->
+                    <div id="graph-view" class="view-container hidden">
+                        <canvas id="graphChart"></canvas>
+                    </div>
+
+                    <div class="loading-overlay hidden" id="loadingOverlay">
+                        <div class="spinner"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <script>
-        // Script pour le toggle de la sidebar
-        document.getElementById('sidebarToggle').addEventListener('click', function () {
-            document.getElementById('sidebar').classList.toggle('active');
-        });
-        // [Le même JavaScript que dans la version précédente]
-        // (Conserve toutes les fonctionnalités existantes)
-        let network;
-        let allNodes = [];
-        let allEdges = [];
-        let currentColor = '#ab9ff2';
+    <div class="notification" id="notification"></div>
 
+    <script>
+        // Configuration globale
+        let network, editor, chart;
+        let allNodes = [], allEdges = [];
+        let currentData = null;
+        let currentColor = '#ab9ff2';
+        let currentView = 'mindmap';
+
+        // Options par défaut pour vis-network
         const options = {
             nodes: {
                 shape: 'box',
                 color: {
                     background: currentColor,
-                    border: '#6a0dad',
-                    highlight: { background: currentColor }
+                    border: '#2575fc',
+                    highlight: {
+                        background: currentColor,
+                        border: '#2575fc'
+                    }
                 },
-                font: { size: 14 },
-                margin: 10
+                font: {
+                    size: 14,
+                    face: 'Inter',
+                    color: '#111827'
+                },
+                margin: 10,
+                borderWidth: 2,
+                shadow: {
+                    enabled: true,
+                    color: 'rgba(0,0,0,0.1)',
+                    size: 10,
+                    x: 0,
+                    y: 2
+                }
             },
             edges: {
                 color: currentColor,
-                smooth: true,
-                arrows: { to: { enabled: true, scaleFactor: 0.5 } }
+                smooth: {
+                    type: 'continuous',
+                    roundness: 0.5
+                },
+                arrows: {
+                    to: {
+                        enabled: true,
+                        scaleFactor: 0.6,
+                        type: 'arrow'
+                    }
+                },
+                width: 2,
+                shadow: {
+                    enabled: true,
+                    color: 'rgba(0,0,0,0.1)',
+                    size: 5,
+                    x: 0,
+                    y: 1
+                }
             },
             physics: {
-                hierarchicalRepulsion: { nodeDistance: 120 }
+                hierarchicalRepulsion: {
+                    nodeDistance: 140,
+                    springLength: 100,
+                    springConstant: 0.01,
+                    damping: 0.09
+                }
+            },
+            interaction: {
+                hover: true,
+                tooltipDelay: 200,
+                hideEdgesOnDrag: true,
+                multiselect: true
+            },
+            layout: {
+                hierarchical: {
+                    direction: 'UD',
+                    nodeSpacing: 120,
+                    levelSeparation: 100,
+                    sortMethod: 'directed'
+                }
             }
         };
 
+        // Initialisation
         document.addEventListener('DOMContentLoaded', () => {
             initEventListeners();
+            initJSONEditor();
         });
 
-        function initEventListeners() {
-            // Gestion upload
-            document.getElementById('jsonUpload').addEventListener('change', handleFileSelect);
-            document.getElementById('dropZone').addEventListener('click', () => document.getElementById('jsonUpload').click());
-
-            // Drag & drop
-            ['dragover', 'drop'].forEach(event => {
-                document.getElementById('dropZone').addEventListener(event, e => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    if (event === 'dragover') {
-                        e.currentTarget.style.background = 'rgba(171, 159, 242, 0.1)';
-                    } else {
-                        e.currentTarget.style.background = '';
-                        handleFileSelect({ target: { files: e.dataTransfer.files } });
-                    }
-                });
-            });
-
-            // Outils
-            document.querySelectorAll('.color-option').forEach(option => {
-                option.addEventListener('click', function () {
-                    document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('active'));
-                    this.classList.add('active');
-                    currentColor = this.dataset.color.replace('var(--', '').replace(')', '');
-                    updateNetworkStyle();
-                });
-            });
-
-            document.getElementById('nodeShape').addEventListener('change', function () {
-                options.nodes.shape = this.value;
-                updateNetworkStyle();
-            });
-
-            document.getElementById('layoutType').addEventListener('change', function () {
-                updateLayout();
-            });
-
-            document.getElementById('layoutDirection').addEventListener('change', function () {
-                updateLayout();
-            });
-
-            // Boutons
-            document.getElementById('resetBtn').addEventListener('click', resetMindMap);
-            document.getElementById('exportBtn').addEventListener('click', exportAsPNG);
-        }
-
-        function handleFileSelect(event) {
-            const file = event.target.files[0];
-            if (!file || !file.name.endsWith('.json')) {
-                alert('Seuls les fichiers JSON sont acceptés !');
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = e => {
-                try {
-                    const json = JSON.parse(e.target.result);
-                    generateMindMap(json);
-                    document.getElementById('mindMapContainer').classList.remove('hidden');
-                    document.getElementById('dropZone').classList.add('hidden');
-                } catch (err) {
-                    alert(`Erreur JSON : ${err.message}`);
+        // Fonctions principales
+        function initJSONEditor() {
+            const container = document.getElementById('jsoneditor');
+            editor = new JSONEditor(container, {
+                mode: 'tree',
+                modes: ['tree', 'view', 'form', 'code', 'text'],
+                onError: (err) => {
+                    showNotification('Erreur JSON: ' + err.message, 'error');
+                },
+                onModeChange: (newMode, oldMode) => {
+                    console.log('Mode switched from', oldMode, 'to', newMode);
                 }
-            };
-            reader.readAsText(file);
+            });
         }
 
-        function generateMindMap(data) {
+        function generateVisualization(data, viewType = currentView) {
+            if (!data) return;
+
+            showLoading(true);
+            currentData = data;
+
+            try {
+                // Mettre à jour l'éditeur JSON
+                editor.set(data);
+
+                // Cacher toutes les vues
+                hideAllViews();
+
+                // Afficher la vue sélectionnée
+                document.getElementById(`${viewType}-view`).classList.remove('hidden');
+                document.querySelector(`.tab[data-view="${viewType}"]`).classList.add('active');
+
+                // Générer la visualisation appropriée
+                switch (viewType) {
+                    case 'mindmap':
+                        createMindMap(data);
+                        break;
+                    case 'editor':
+                        // L'éditeur est déjà mis à jour
+                        break;
+                    case 'tree':
+                        createTreeView(data);
+                        break;
+                    case 'graph':
+                        createGraphView(data);
+                        break;
+                }
+
+                // Afficher la zone de visualisation
+                document.getElementById('uploadContainer').classList.add('hidden');
+                document.getElementById('visualizationArea').classList.remove('hidden');
+
+                showNotification('Visualisation générée avec succès', 'success');
+            } catch (err) {
+                showNotification('Erreur lors de la génération: ' + err.message, 'error');
+                console.error(err);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        function createMindMap(data) {
+            // Nettoyer les données précédentes
             allNodes = [];
             allEdges = [];
 
-            // Node racine
+            if (network) {
+                network.destroy();
+            }
+
+            // Créer le nœud racine
+            const rootId = 1;
             allNodes.push({
-                id: 1,
-                label: 'RACINE',
+                id: rootId,
+                label: 'ROOT',
                 level: 0,
-                color: { background: currentColor, border: '#6a0dad' },
-                font: { color: 'white' },
-                shape: options.nodes.shape
+                color: {
+                    background: currentColor,
+                    border: '#4f46e5',
+                    highlight: {
+                        background: currentColor,
+                        border: '#4338ca'
+                    }
+                },
+                font: {
+                    color: 'white',
+                    size: 16,
+                    face: 'Inter',
+                    bold: true
+                },
+                shape: document.getElementById('nodeShape').value,
+                size: 25,
+                borderWidth: 2
             });
 
-            // Conversion récursive
-            processNode(data, 1, 1);
+            // Traiter les données récursivement
+            processNode(data, rootId, 1);
 
-            // Création du réseau
-            if (network) network.destroy();
+            // Créer le réseau
+            const container = document.getElementById('mindMap');
             network = new vis.Network(
-                document.getElementById('mindMap'),
+                container,
                 { nodes: new vis.DataSet(allNodes), edges: new vis.DataSet(allEdges) },
                 options
             );
 
-            function processNode(obj, parentId, level) {
-                Object.entries(obj).forEach(([key, value]) => {
-                    const nodeId = allNodes.length + 1;
-                    const isObject = typeof value === 'object' && value !== null;
+            // Configurer les événements du réseau
+            network.on('click', (params) => {
+                if (params.nodes.length) {
+                    const nodeId = params.nodes[0];
+                    const node = allNodes.find(n => n.id === nodeId);
+                    network.selectNodes([nodeId]);
+                }
+            });
 
-                    allNodes.push({
-                        id: nodeId,
-                        label: isObject ? key : `${key}: ${formatValue(value)}`,
-                        level: level,
-                        color: { background: getNodeColor(level) },
-                        shape: isObject ? options.nodes.shape : 'ellipse',
-                        font: { size: 12 + (3 / level) }
-                    });
+            // Appliquer la disposition
+            updateLayout();
+        }
 
-                    allEdges.push({
-                        from: parentId,
-                        to: nodeId,
-                        color: currentColor
-                    });
+        function createTreeView(data) {
+            // Implémentation simplifiée - à améliorer
+            document.getElementById('treeDiagram').innerHTML = generateTreeHTML(data);
+        }
 
-                    if (isObject) processNode(value, nodeId, level + 1);
-                });
+        function createGraphView(data) {
+            const ctx = document.getElementById('graphChart').getContext('2d');
+
+            if (chart) {
+                chart.destroy();
             }
+
+            // Exemple simple - à adapter selon vos besoins
+            const labels = Object.keys(data);
+            const values = labels.map(key => {
+                const val = data[key];
+                if (typeof val === 'object') {
+                    return Object.keys(val).length;
+                }
+                return 1;
+            });
+
+            chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Éléments',
+                        data: values,
+                        backgroundColor: labels.map((_, i) =>
+                            `hsl(${(i * 360 / labels.length)}, 70%, 60%)`
+                        ),
+                        borderColor: labels.map((_, i) =>
+                            `hsl(${(i * 360 / labels.length)}, 70%, 40%)`
+                        ),
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => {
+                                    return `${context.label}: ${context.raw} élément(s)`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        // Fonctions utilitaires
+        function processNode(obj, parentId, level) {
+            if (!obj || typeof obj !== 'object') return;
+
+            Object.entries(obj).forEach(([key, value], index) => {
+                const nodeId = allNodes.length + 1;
+                const isObject = typeof value === 'object' && value !== null;
+                const isArray = Array.isArray(value);
+
+                // Déterminer la forme en fonction du type
+                let shape = document.getElementById('nodeShape').value;
+                if (isArray) shape = 'box';
+                if (!isObject && !isArray) shape = 'ellipse';
+
+                // Créer le nœud
+                allNodes.push({
+                    id: nodeId,
+                    label: isObject ? key : `${key}: ${formatValue(value)}`,
+                    level: level,
+                    color: {
+                        background: getNodeColor(level),
+                        border: darkenColor(getNodeColor(level), 20),
+                        highlight: {
+                            background: lightenColor(getNodeColor(level), 10),
+                            border: darkenColor(getNodeColor(level), 30)
+                        }
+                    },
+                    shape: shape,
+                    font: {
+                        size: 14 - (level * 0.5),
+                        face: 'Inter'
+                    },
+                    margin: 8,
+                    borderWidth: 1
+                });
+
+                // Créer le lien
+                allEdges.push({
+                    from: parentId,
+                    to: nodeId,
+                    color: {
+                        color: currentColor,
+                        highlight: lightenColor(currentColor, 20),
+                        hover: lightenColor(currentColor, 20)
+                    },
+                    width: 1.5,
+                    smooth: {
+                        type: 'continuous',
+                        roundness: 0.3
+                    }
+                });
+
+                // Traiter récursivement les objets/tableaux
+                if (isObject) {
+                    processNode(value, nodeId, level + 1);
+                }
+            });
+        }
+
+        function generateTreeHTML(data, level = 0) {
+            if (!data || typeof data !== 'object') return '';
+
+            const isArray = Array.isArray(data);
+            const keys = Object.keys(data);
+
+            let html = `<ul class="tree-level-${level}">`;
+
+            keys.forEach(key => {
+                const value = data[key];
+                const isObject = typeof value === 'object' && value !== null;
+
+                html += `<li>
+                    <span class="tree-node ${isObject ? 'has-children' : ''}">
+                        ${key}${!isObject ? `: ${formatValue(value)}` : ''}
+                    </span>`;
+
+                if (isObject) {
+                    html += generateTreeHTML(value, level + 1);
+                }
+
+                html += `</li>`;
+            });
+
+            html += `</ul>`;
+            return html;
+        }
+
+        function hideAllViews() {
+            document.querySelectorAll('.view-container').forEach(view => {
+                view.classList.add('hidden');
+            });
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+        }
+
+        function resetVisualization() {
+            hideAllViews();
+            document.getElementById('uploadContainer').classList.remove('hidden');
+            document.getElementById('visualizationArea').classList.add('hidden');
+            document.getElementById('jsonUpload').value = '';
+            document.getElementById('jsonUrl').value = '';
+
+            if (network) {
+                network.destroy();
+                network = null;
+            }
+
+            if (chart) {
+                chart.destroy();
+                chart = null;
+            }
+
+            currentData = null;
+            allNodes = [];
+            allEdges = [];
+
+            showNotification('Visualisation réinitialisée', 'info');
         }
 
         function updateNetworkStyle() {
             if (!network) return;
 
-            // Mise à jour des couleurs
+            // Mettre à jour les options globales
             options.nodes.color.background = currentColor;
             options.nodes.color.highlight.background = currentColor;
             options.edges.color = currentColor;
 
-            // Mise à jour des nodes
-            const updateNodes = allNodes.map(node => ({
-                ...node,
-                color: {
-                    background: node.id === 1 ? currentColor : getNodeColor(node.level || 1),
-                    border: node.id === 1 ? '#6a0dad' : currentColor
-                },
-                shape: node.id === 1 || node.shape === 'ellipse' ? node.shape : options.nodes.shape
-            }));
-
-            // Mise à jour des edges
-            const updateEdges = allEdges.map(edge => ({
-                ...edge,
-                color: currentColor
-            }));
-
+            // Mettre à jour le réseau
             network.setOptions(options);
-            network.body.data.nodes.update(updateNodes);
-            network.body.data.edges.update(updateEdges);
+
+            // Mettre à jour les nœuds existants
+            const updates = allNodes.map(node => {
+                const isRoot = node.id === 1;
+                return {
+                    id: node.id,
+                    color: {
+                        background: isRoot ? currentColor : getNodeColor(node.level || 1),
+                        border: isRoot ? darkenColor(currentColor, 20) : darkenColor(getNodeColor(node.level || 1), 20),
+                        highlight: {
+                            background: isRoot ? currentColor : lightenColor(getNodeColor(node.level || 1), 10),
+                            border: isRoot ? darkenColor(currentColor, 30) : darkenColor(getNodeColor(node.level || 1), 30)
+                        }
+                    },
+                    shape: document.getElementById('nodeShape').value
+                };
+            });
+
+            network.body.data.nodes.update(updates);
+
+            // Mettre à jour les liens
+            const edgeUpdates = allEdges.map(edge => ({
+                id: edge.id,
+                color: {
+                    color: currentColor,
+                    highlight: lightenColor(currentColor, 20),
+                    hover: lightenColor(currentColor, 20)
+                }
+            }));
+
+            network.body.data.edges.update(edgeUpdates);
         }
 
         function updateLayout() {
             if (!network) return;
 
-            const layoutType = document.getElementById('layoutType').value;
-            const direction = document.getElementById('layoutDirection').value;
+            const type = document.getElementById('layoutType').value;
+            const dir = document.getElementById('layoutDirection').value;
 
-            if (layoutType === 'hierarchical') {
-                options.layout = {
-                    hierarchical: {
-                        direction: direction,
-                        nodeSpacing: 120,
-                        levelSeparation: 100
-                    }
-                };
-                options.physics = { hierarchicalRepulsion: { nodeDistance: 140 } };
-            } else {
-                options.layout = { randomSeed: 42 };
-                options.physics = {
-                    barnesHut: {
-                        gravitationalConstant: -2000,
-                        centralGravity: 0.3
-                    }
-                };
-            }
+            options.layout = type === 'hierarchical' ? {
+                hierarchical: {
+                    direction: dir,
+                    nodeSpacing: 120,
+                    levelSeparation: 100,
+                    sortMethod: 'directed'
+                }
+            } : type === 'circular' ? {
+                randomSeed: 42,
+                improvedLayout: true
+            } : {
+                randomSeed: 42
+            };
+
+            options.physics = type === 'hierarchical' ? {
+                hierarchicalRepulsion: {
+                    nodeDistance: 140,
+                    springLength: 100,
+                    springConstant: 0.01,
+                    damping: 0.09
+                }
+            } : {
+                barnesHut: {
+                    gravitationalConstant: -2000,
+                    centralGravity: 0.3,
+                    springLength: 200,
+                    springConstant: 0.04,
+                    damping: 0.09
+                }
+            };
 
             network.setOptions(options);
             network.fit();
-        }
-
-        function getNodeColor(level) {
-            const colors = [
-                currentColor,
-                '#2575fc',
-                '#60d394',
-                '#ffd97d',
-                '#faaf72'
-            ];
-            return colors[level % colors.length];
-        }
-
-        function formatValue(value) {
-            if (value === null) return 'null';
-            if (Array.isArray(value)) return `[${value.length} éléments]`;
-            if (typeof value === 'string') return value.length > 15 ? value.substring(0, 15) + '...' : value;
-            return value;
-        }
-
-        function resetMindMap() {
-            document.getElementById('mindMapContainer').classList.add('hidden');
-            document.getElementById('dropZone').classList.remove('hidden');
-            document.getElementById('jsonUpload').value = '';
-            if (network) network.destroy();
         }
 
         function exportAsPNG() {
             if (!network) return;
 
             const canvas = document.querySelector('#mindMap canvas');
-            const dataURL = canvas.toDataURL('image/png');
+            if (!canvas) return;
 
             const link = document.createElement('a');
-            link.download = 'mindmap-' + new Date().toISOString().slice(0, 10) + '.png';
-            link.href = dataURL;
+            link.download = `agora-dataviz.com-${new Date().toISOString().slice(0, 10)}.png`;
+            link.href = canvas.toDataURL('image/png');
             link.click();
+
+            showNotification('Export PNG terminé', 'success');
+        }
+
+        function exportAsJSON() {
+            if (!currentData) return;
+
+            const dataStr = JSON.stringify(currentData, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+
+            const link = document.createElement('a');
+            link.download = `json-data-${new Date().toISOString().slice(0, 10)}.json`;
+            link.href = url;
+            link.click();
+
+            showNotification('Export JSON terminé', 'success');
+        }
+
+        function showLoading(show) {
+            const overlay = document.getElementById('loadingOverlay');
+            overlay.classList.toggle('hidden', !show);
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = 'notification';
+
+            // Appliquer le style en fonction du type
+            switch (type) {
+                case 'success':
+                    notification.style.background = '#60d394;';
+                    break;
+                case 'error':
+                    notification.style.background = '#ee6055';
+                    break;
+                case 'warning':
+                    notification.style.background = '#ffd97d';
+                    break;
+                default:
+                    notification.style.background = '#3b82f6';
+            }
+
+            notification.classList.add('show');
+
+            // Masquer après 3 secondes
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Fonctions d'aide
+        function getNodeColor(level) {
+            const colors = [
+                '#3b82f6', // blue
+                '#60d394;', // green
+                '#ffd97d', // yellow
+                '#fcd5dc', // pink
+                '#ab9ff2', // purple
+                '#3ad38b', // teal
+                '#f99b58ff', // orange
+                '#64748b'  // gray
+            ];
+            return colors[level % colors.length] || currentColor;
+        }
+
+        function lightenColor(color, percent) {
+            // Simplifié - en production utiliser une librairie de couleur
+            return color;
+        }
+
+        function darkenColor(color, percent) {
+            // Simplifié - en production utiliser une librairie de couleur
+            return color;
+        }
+
+        function formatValue(value) {
+            if (value === null) return 'null';
+            if (value === undefined) return 'undefined';
+            if (typeof value === 'boolean') return value ? 'true' : 'false';
+            if (Array.isArray(value)) return `[array: ${value.length} items]`;
+            if (typeof value === 'object') return `{object: ${Object.keys(value).length} keys}`;
+            if (typeof value === 'string') {
+                return value.length > 20 ? `"${value.substring(0, 20)}..."` : `"${value}"`;
+            }
+            return value;
+        }
+
+        function loadSampleData() {
+            const sampleData = {
+                "name": "John Doe",
+                "age": 35,
+                "isActive": true,
+                "address": {
+                    "street": "123 Main St",
+                    "city": "Anytown",
+                    "zip": "12345",
+                    "coordinates": {
+                        "lat": 40.7128,
+                        "lng": -74.0060
+                    }
+                },
+                "contacts": [
+                    {
+                        "type": "email",
+                        "value": "john@example.com"
+                    },
+                    {
+                        "type": "phone",
+                        "value": "+1 555-1234"
+                    }
+                ],
+                "projects": {
+                    "completed": 12,
+                    "ongoing": 3,
+                    "planned": 5
+                }
+            };
+
+            generateVisualization(sampleData);
+        }
+
+        function loadFromUrl(url) {
+            if (!url) {
+                showNotification('Veuillez entrer une URL valide', 'error');
+                return;
+            }
+
+            showLoading(true);
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) throw new Error('Erreur réseau');
+                    return response.json();
+                })
+                .then(data => {
+                    generateVisualization(data);
+                    showNotification('Données chargées depuis URL', 'success');
+                })
+                .catch(err => {
+                    showNotification('Erreur: ' + err.message, 'error');
+                    console.error(err);
+                })
+                .finally(() => {
+                    showLoading(false);
+                });
+        }
+
+        function showPasteDialog() {
+            const jsonText = prompt("Collez votre JSON ici:");
+            if (!jsonText) return;
+
+            try {
+                const jsonData = JSON.parse(jsonText);
+                generateVisualization(jsonData);
+            } catch (err) {
+                showNotification('JSON invalide: ' + err.message, 'error');
+            }
+        }
+
+        // Gestionnaires d'événements
+        function initEventListeners() {
+            // Gestion des fichiers
+            document.getElementById('jsonUpload').addEventListener('change', handleFileSelect);
+            document.getElementById('dropZone').addEventListener('click', () => document.getElementById('jsonUpload').click());
+
+            // Drag & drop
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                document.getElementById('dropZone').addEventListener(eventName, preventDefaults, false);
+            });
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                document.getElementById('dropZone').addEventListener(eventName, highlight, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                document.getElementById('dropZone').addEventListener(eventName, unhighlight, false);
+            });
+
+            document.getElementById('dropZone').addEventListener('drop', handleDrop, false);
+
+            // Contrôles de la sidebar
+            document.querySelectorAll('.color-option').forEach(opt => {
+                opt.addEventListener('click', () => {
+                    document.querySelector('.color-option.active').classList.remove('active');
+                    opt.classList.add('active');
+                    currentColor = opt.dataset.color;
+                    updateNetworkStyle();
+                });
+            });
+
+            document.getElementById('nodeShape').addEventListener('change', () => {
+                options.nodes.shape = document.getElementById('nodeShape').value;
+                updateNetworkStyle();
+            });
+
+            document.getElementById('layoutType').addEventListener('change', updateLayout);
+            document.getElementById('layoutDirection').addEventListener('change', updateLayout);
+
+            // Boutons
+            document.getElementById('resetBtn').addEventListener('click', resetVisualization);
+            document.getElementById('exportPngBtn').addEventListener('click', exportAsPNG);
+            document.getElementById('exportJsonBtn').addEventListener('click', exportAsJSON);
+            document.getElementById('loadFromUrlBtn').addEventListener('click', () => {
+                loadFromUrl(document.getElementById('jsonUrl').value);
+            });
+            document.getElementById('sampleDataBtn').addEventListener('click', loadSampleData);
+            document.getElementById('pasteJsonBtn').addEventListener('click', showPasteDialog);
+
+            // Onglets
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const viewType = tab.dataset.view;
+                    currentView = viewType;
+                    generateVisualization(currentData, viewType);
+                });
+            });
+
+            // Toggle sidebar
+            document.getElementById('sidebarToggle').addEventListener('click', () => {
+                document.getElementById('sidebar').classList.toggle('active');
+            });
+
+            // Toggle editor
+            document.getElementById('toggleEditorBtn').addEventListener('click', () => {
+                if (currentView === 'editor') {
+                    currentView = 'mindmap';
+                } else {
+                    currentView = 'editor';
+                }
+                generateVisualization(currentData, currentView);
+            });
+        }
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        function highlight() {
+            document.getElementById('dropZone').classList.add('dragover');
+        }
+
+        function unhighlight() {
+            document.getElementById('dropZone').classList.remove('dragover');
+        }
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+
+            if (files.length) {
+                document.getElementById('jsonUpload').files = files;
+                handleFileSelect({ target: { files } });
+            }
+        }
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (!file.name.endsWith('.json') && !file.type.includes('json')) {
+                showNotification('Seuls les fichiers JSON sont acceptés', 'error');
+                return;
+            }
+
+            showLoading(true);
+
+            const reader = new FileReader();
+            reader.onload = e => {
+                try {
+                    const jsonData = JSON.parse(e.target.result);
+                    generateVisualization(jsonData);
+                } catch (err) {
+                    showNotification('Erreur JSON: ' + err.message, 'error');
+                    console.error(err);
+                } finally {
+                    showLoading(false);
+                }
+            };
+            reader.onerror = () => {
+                showNotification('Erreur de lecture du fichier', 'error');
+                showLoading(false);
+            };
+            reader.readAsText(file);
         }
     </script>
+</body>
 
-    <?php require_once '../includes/footer.php'; ?>
+</html>

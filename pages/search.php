@@ -12,6 +12,7 @@ $searchResults = [];
 $searchQuery = isset($_GET['q']) ? trim($_GET['q']) : '';
 
 // Requête pour récupérer tous les fichiers publics + ceux de l'utilisateur
+// MAJ à finir dans chaque feature requise "data-to-chart", "json-to-map" et SQL-editor ajouté la réception des fichiers + adaptations spécifiques à chaque page
 $query = "
     SELECT uf.*, u.email as owner_email 
     FROM user_files uf
@@ -110,53 +111,7 @@ require_once '../includes/header.php';
                 <?= empty($searchQuery) ? 'Aucun fichier public disponible.' : 'Aucun fichier trouvé.' ?>
             </div>
         <?php else: ?>
-            <!--<div class="file-gallery">
-                <?php foreach ($searchResults as $file): ?>
-                    <div class="file-card">
-                        <div class="file-icon">
-                            <?php switch (strtolower($file['file_type'])):
-                                case 'csv': ?>
-                                    <i class="fas fa-file-csv"></i>
-                                    <?php break; ?>
-                                <?php case 'xlsx':
-                                case 'xls': ?>
-                                    <i class="fas fa-file-excel"></i>
-                                    <?php break; ?>
-                                <?php case 'json': ?>
-                                    <i class="fas fa-file-code"></i>
-                                    <?php break; ?>
-                                <?php default: ?>
-                                    <i class="fas fa-file"></i>
-                            <?php endswitch; ?>
-                        </div>
-                        <div class="file-info">
-                            <h5><?= htmlspecialchars($file['file_name']) ?></h5>
-                            <small>Propriétaire:
-                                <a href="<?= BASE_URL ?>/pages/profile.php?user_id=<?= (int) $file['user_id'] ?>"
-                                    class="owner-link">
-                                    <?= htmlspecialchars($file['owner_email']) ?>
-                                </a>
-                            </small>
-                            <small><?= date('d/m/Y H:i', strtotime($file['upload_date'])) ?></small>
-                            <small class="file-type <?= strtolower($file['file_type']) ?>">
-                                <?= strtoupper($file['file_type']) ?>
-                            </small>
-                            <?php if (!$file['is_public']): ?>
-                                <span class="badge badge-warning">Privé</span>
-                            <?php endif; ?>
-                        </div>
-                        <div class="file-actions">
-                            <a href="view_chart.php?id=<?= $file['id'] ?>" class="btn btn-sm btn-info" title="Visualiser">
-                                <i class="fas fa-chart-line"></i>
-                            </a>
-                            <a href="<?= str_replace('../', BASE_URL . '/', $file['file_path']) ?>" download
-                                class="btn btn-sm btn-success" title="Télécharger">
-                                <i class="fas fa-download"></i>
-                            </a>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>-->
+           
             <div class="file-gallery">
                 <?php foreach ($searchResults as $file): ?>
                     <div class="file-card">
@@ -184,6 +139,9 @@ require_once '../includes/header.php';
                                     <?php case 'json': ?>
                                         <i class="fas fa-file-code"></i>
                                         <?php break; ?>
+                                    <?php case 'sql': ?>
+                                        <i class="fas fa-database"></i>
+                                        <?php break; ?>
                                     <?php default: ?>
                                         <i class="fas fa-file"></i>
                                 <?php endswitch; ?>
@@ -209,8 +167,28 @@ require_once '../includes/header.php';
 
                         <div class="file-actions">
                             <?php if (strtolower($file['file_type']) !== 'image'): ?>
-                                <a href="view_chart.php?id=<?= $file['id'] ?>" class="btn btn-sm btn-info" title="Visualiser">
-                                    <i class="fas fa-chart-line"></i>
+                                <?php
+                                // Déterminer le bon fichier d'ouverture selon le type
+                                $viewer = 'view_chart.php'; // Par défaut
+                                
+                                switch(strtolower($file['file_type'])) {
+                                    case 'csv':
+                                    case 'xls':
+                                    case 'xlsx':
+                                        $viewer = 'data-to-chart.php';
+                                        break;
+                                    case 'json':
+                                        $viewer = 'json-to-map.php';
+                                        break;
+                                    case 'sql':
+                                        $viewer = 'SQL-editor.php';
+                                        break;
+                                }
+                                ?>
+                                <a href="<?= $viewer ?>?id=<?= $file['id'] ?>" class="btn btn-sm btn-info" title="Visualiser">
+                                    <i class="fas <?= 
+                                        strtolower($file['file_type']) === 'sql' ? 'fa-database' : 'fa-chart-line' 
+                                    ?>"></i>
                                 </a>
                             <?php endif; ?>
                             <a href="<?= str_replace('../', BASE_URL . '/', $file['file_path']) ?>" download
@@ -227,7 +205,6 @@ require_once '../includes/header.php';
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
 <script>
-
     // Configuration du lightbox pour la galerie
     lightbox.option({
         'albumLabel': 'Image %1 sur %2',
@@ -236,7 +213,6 @@ require_once '../includes/header.php';
         'imageFadeDuration': 200,
         'resizeDuration': 200
     });
-
 
     $(document).ready(function () {
         // Autocomplétion
@@ -267,8 +243,6 @@ require_once '../includes/header.php';
             });
         });
     });
-
-
 </script>
 
 <?php require_once '../includes/footer.php'; ?>

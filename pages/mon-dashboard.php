@@ -14,7 +14,7 @@ if ($user['username'] !== 'berru' || $user['email'] !== 'g.leberruyer@gmail.com'
     exit("⛔ Accès interdit.");
 }*/
 // redirection
-if ($user['username'] !== 'berru' || $user['email'] !== 'g.leberruyer@gmail.com') {
+if ($user['username'] !== 'admin' || $user['email'] !== 'contact@gael-berru.com') {
     header("Location: " . BASE_URL . "/pages/profile.php");
     exit;
 }

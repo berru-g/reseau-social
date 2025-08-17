@@ -32,18 +32,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
   }
 }
-
-
+require_once '../includes/header.php';
 ?>
-<link rel="stylesheet" href="<?= BASE_URL ?>/assets/css/style.css">
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  rel="stylesheet"
-/>
-<link
-  href="https://unpkg.com/aos@next/dist/aos.css"
-  rel="stylesheet"
-/>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet" />
 
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
@@ -52,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   * {
     box-sizing: border-box;
   }
+
   body {
     margin: 0;
     background: #f5f6fa;
@@ -59,10 +53,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     color: #2c2c3a;
     overflow-x: hidden;
   }
+
   a {
     color: #9c8dea;
     text-decoration: none;
   }
+
   a:hover {
     text-decoration: underline;
   }
@@ -90,6 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     text-align: center;
     margin-bottom: 60px;
   }
+
   .hero img {
     width: 280px;
     max-width: 90vw;
@@ -99,9 +96,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     filter: drop-shadow(0 0 12px #9c8dea88);
     transition: filter 0.3s ease;
   }
+
   .hero img:hover {
     filter: drop-shadow(0 0 20px #9c8deacc);
   }
+
   .hero h1 {
     font-weight: 700;
     font-size: 3rem;
@@ -109,15 +108,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     margin-bottom: 8px;
     text-shadow: 0 0 8px #9c8deaaa;
   }
+
   .hero h1 strong {
     color: #9c8dea;
   }
+
   .hero p {
     font-size: 1.2rem;
     max-width: 580px;
     margin: 0 auto 30px;
     color: #5a5780;
   }
+
   .hero .btn-primary {
     background: #9c8dea;
     border: none;
@@ -130,6 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     transition: all 0.3s ease;
     font-size: 1.1rem;
   }
+
   .hero .btn-primary:hover {
     background: #7f6ed7;
     box-shadow: 0 9px 25px rgba(127, 110, 215, 0.8);
@@ -163,6 +166,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     position: relative;
     overflow: hidden;
   }
+
   .card::before {
     content: "";
     position: absolute;
@@ -170,22 +174,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     left: -40%;
     width: 180%;
     height: 180%;
-    background: linear-gradient(
-      120deg,
-      #9c8dea,
-      #7869e2,
-      #b5a9f8,
-      #9c8dea
-    );
+    background: linear-gradient(120deg,
+        #9c8dea,
+        #7869e2,
+        #b5a9f8,
+        #9c8dea);
     filter: blur(55px);
     opacity: 0.3;
     transition: opacity 0.5s ease;
     z-index: 0;
     border-radius: 50%;
   }
+
   .card:hover::before {
     opacity: 0.55;
   }
+
   .card:hover {
     transform: translateY(-12px);
     box-shadow:
@@ -193,6 +197,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       0 20px 36px rgba(156, 141, 234, 0.3);
     background: #f9f8ff;
   }
+
   .card i {
     font-size: 40px;
     color: #fff;
@@ -201,9 +206,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     z-index: 1;
     transition: transform 0.3s ease;
   }
+
   .card:hover i {
     transform: scale(1.25) rotate(10deg);
   }
+
   .card h3 {
     font-size: 22px;
     margin-bottom: 15px;
@@ -211,6 +218,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     position: relative;
     z-index: 1;
   }
+
   .card p {
     font-size: 15.8px;
     line-height: 1.5;
@@ -224,6 +232,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     .hero h1 {
       font-size: 2.2rem;
     }
+
     .hero p {
       font-size: 1rem;
     }
@@ -234,35 +243,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <canvas id="canvas-bg"></canvas>
 
   <div class="hero" data-aos="fade-up" data-aos-duration="1200">
-    <!--<img
-      src="<?= BASE_URL ?>/assets/img/fullmotionpres.gif"
-      alt="Agora Social Feed - Motion Design"
-      loading="lazy"
-    />-->
+<!--Approches séduisantes pour parler des usages
+Par scénario concret
+"Vous venez de recevoir un fichier Excel plein de chiffres ? En quelques clics, Agora Dataviz le transforme en un graphique clair et dynamique, parfait pour votre réunion de 15h."
+"Vous voulez publier une étude sur LinkedIn ? Glissez vos données dans Agora Dataviz, choisissez un style, téléchargez l’image prête à poster."
+Par gain immédiat
+"Passez de la donnée brute à un graphique interactif en moins de 2 minutes."
+"Fini les tableurs indigestes — vos chiffres racontent enfin une histoire."
+Par émotion et image mentale
+"Faites parler vos données comme si vous étiez un designer."
+"Des chiffres qui séduisent l’œil, des graphiques qui captivent l’audience."-->
     <h1>
-      Bienvenue sur <strong>Agora</strong> Social Feed
+       habillez vos données pour convaincre
     </h1>
     <p>
-      Agora Social Feed contient un Réseau social minimaliste et une plateforme
-      de partage et visualisation graphique de fichiers CSV, Excel et Json.
+      en moins de 2 minutes.
     </p>
-    <a href="<?= BASE_URL ?>/pages/register.php"><button class="btn-primary" aria-label="Essayer Agora Social Feed maintenant">
-      Essayer maintenant
-    </button></a>
+    <a href="<?= BASE_URL ?>/pages/register.php"><button class="btn-primary"
+        aria-label="Essayer Agora Social Feed maintenant">
+        Créer gratuitement
+      </button></a>
   </div>
 
-  <div
-    class="card-grid"
-    data-aos="fade-up"
-    data-aos-delay="300"
-    data-aos-duration="1000"
-  >
+  <div class="card-grid" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
     <div class="card" data-i18n-card>
       <i class="fas fa-chart-line"></i>
       <h3 data-i18n-card-title>Features</h3>
       <p data-i18n-card-text>
-        Agora Social Feed contient un Réseau social minimaliste et une plateforme
-        de partage et visualisation graphique de fichiers CSV, Excel et Json.
+        Poster vos dernières trouvailles, partagez vos data public, créer une map depuis un json ou une chart depuis un
+        csv, éditez du json ou SQL. Convertissez vos formats et bien plus.
       </p>
     </div>
 
@@ -270,8 +279,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       <i class="fas fa-user-secret"></i>
       <h3 data-i18n-card-title>Anonyme</h3>
       <p data-i18n-card-text>
-        Inscription gratuite. Aucun mail vérifié requis. Crée un compte en quelques
-        secondes, sans friction ni identité imposée.
+        Inscription gratuite. Aucun mail vérifié requis, sans friction ni identité imposée. Base de données sécurisé.
       </p>
     </div>
 
@@ -285,10 +293,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="card" data-i18n-card>
       <i class="fas fa-flask"></i>
-      <h3 data-i18n-card-title>En test, avec toi</h3>
+      <h3 data-i18n-card-title>En test avec toi</h3>
       <p data-i18n-card-text>
-        Agora est un prototype. Tes retours sont les bienvenus pour co-construire cet
-        espace suivant les besoins de chacun.
+        Agora est un MVP ou prototype. Vos retours sont les bienvenus pour co-construire cet
+        espace suivant vos besoins.
       </p>
     </div>
   </div>
@@ -427,7 +435,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   </form>
 
   <p data-i18n-card-text>Pas encore de compte ? <a href="register.php">Inscrivez-vous</a></p>
-  <p data-i18n-card-text><a href="forgot-password.php">Mot de passe oublié ?</a></p>
+  <!--<p data-i18n-card-text><a href="forgot-password.php">Mot de passe oublié ?</a></p>-->
 </div>
 
 <script src="/assets/js/lang.js"></script>

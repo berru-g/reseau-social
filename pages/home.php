@@ -227,7 +227,7 @@ require_once '../includes/header.php';
             resize: none;
             height: 50px;
             padding: 10px 10px;
-            font-size: 14px;
+            font-size: 10px;
             font-family: inherit;
             border-radius: 24px;
             border: 1px solid #ccc;

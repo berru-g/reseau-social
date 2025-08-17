@@ -166,8 +166,8 @@ require_once '../includes/header.php';
             || est toujours vrai dès qu’un seul des deux n’est pas bon, pour vérifier que c’est bien moi et uniquement moi alors utiliser, && -->
         <?php if (
             isset($user['username'], $user['email']) &&
-            $user['username'] === 'berru' &&
-            $user['email'] === 'g.leberruyer@gmail.com'
+            $user['username'] === 'admin' &&
+            $user['email'] === 'contact@gael-berru.com'
         ): ?>
             <div class="stat-card clickable" onclick="location.href='<?= BASE_URL ?>/pages/mon-dashboard.php'">
                 <div class="stat-icon bg-gradient"><i class="fas fa-chart-line"></i></div>
@@ -224,8 +224,8 @@ require_once '../includes/header.php';
                 <a href="change-password.php" class="btn-primary"><i class="fas fa-key"></i> Changer le mot de passe</a>
                 <?php if (
                     isset($user['username'], $user['email']) &&
-                    $user['username'] === 'berru' &&
-                    $user['email'] === 'g.leberruyer@gmail.com'
+                    $user['username'] === 'admin' &&
+                    $user['email'] === 'contact@gael-berru.com'
                 ): ?>
                     <a href="<?= BASE_URL ?>/wallet/wallet.php" class="btn-ghost"><i class="fas fa-chart-pie"></i> Wallet all in
                         one</a>

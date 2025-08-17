@@ -235,7 +235,7 @@ require_once '../includes/header.php';
     cursor: pointer;
     transition: all 0.3s;
     background: white;
-    max-width: 250px;
+    max-width: 350px;
     margin: 0 auto;
     box-shadow: var(--card-shadow);
   }
@@ -338,7 +338,7 @@ require_once '../includes/header.php';
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   }
 
-  .data-visualizer-header h1 {
+  .data-visualizer-header h2 {
     font-weight: 700;
     color: #333;
   }
@@ -1415,14 +1415,14 @@ require_once '../includes/header.php';
       data: currentData
     });
 
-    downloadFile(csv, 'data_export.csv', 'text/csv;charset=utf-8;');
+    downloadFile(csv, 'agora_dataviz_com.csv', 'text/csv;charset=utf-8;');
   }
 
   function exportJSON() {
     if (!currentData.length) return;
 
     const json = JSON.stringify(currentData, null, 2);
-    downloadFile(json, 'data_export.json', 'application/json');
+    downloadFile(json, 'agora_dataviz_com.json', 'application/json');
   }
 
   function downloadFile(content, filename, mimeType) {
